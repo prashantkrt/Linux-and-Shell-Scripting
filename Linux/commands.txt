@@ -1,0 +1,56 @@
+pwd       # print working directory
+
+ls        # simple list
+ls -l     # detailed list with permissions
+ls -a     # show hidden files
+
+cd /home/user/Documents
+cd ..     # go back one directory
+cd ~      # go to home directory
+
+touch file.txt  # create an empty file
+👉 If myfile.txt doesn’t exist, it creates an empty file.
+👉 If it already exists, it just updates its timestamp.
+
+touch file1.txt file2.txt file3.txt # create multiple files
+
+touch -c myfile.txt # Prevent creating a new file (only update if exists)
+👉 If the file exists → timestamp updated.
+👉 If not → no new file is created.
+
+mkdir myfolder  # create a directory
+
+cat file.txt                # display file contents
+cat file1.txt file2.txt     # View multiple files together
+cat > newfile.txt           # create a new file (Ctrl+D to save and exit).Anything you type will be added at the end of the file. Press CTRL + D to finish.
+cat filename                # → view file
+cat > file                  # → create file
+cat >> file                 # → append to file
+cat file1 file2 > newfile   # → merge files
+
+head file.txt               # show first 10 lines
+tail file.txt               # show last 10 lines
+
+# grep command options
+
+grep "error" logfile.log     # search for "error" in logfile.log
+grep -i "hello" file.txt     # case insensitive
+
+| Option   | Meaning                                | Explanation & Use Case                                                                                                | Example                                                                  |
+| -------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| -i       | Case-insensitive search                | Ignores uppercase/lowercase differences. Useful when you don’t know the exact case of the word.                       | grep -i "hello" file.txt → matches Hello, HELLO, hello.                  |
+| -n       | Show line numbers                      | Prints the line number along with the matching line, helpful for locating matches.                                    | grep -n "error" logfile.log → output like 23:error found.                |
+| -v       | Invert match (show non-matching lines) | Shows all lines that do not match the given pattern. Great for filtering out unwanted data.                           | grep -v "success" file.txt → shows all lines without “success”.          |
+| -c       | Count number of matches                | Displays only the number of matching lines, not the content. Useful for stats.                                        | grep -c "fail" file.txt → outputs 5 if 5 lines match.                    |
+| -l       | Show filenames with matches            | Prints only filenames that contain matches, not the matching lines. Very useful when searching across multiple files. | grep -l "TODO" *.java → prints file names with “TODO”.                   |
+| -r       | Recursive search in directories        | Searches inside all files under the given directory (recursively). Great for searching code/projects.                 | grep -r "main" ./src → finds all occurrences of main in src/.            |
+| -w       | Match whole words only                 | Ensures only exact words match. Without -w, partial matches also appear.                                              | grep -w "cat" file.txt → matches cat, not category or educate.           |
+| -o       | Print only the matching part           | Instead of printing whole line, prints just the matched word/pattern.                                                 | grep -o "foo[0-9]" file.txt → prints foo1, foo2, etc.                    |
+| -A n     | Show n lines After match               | Useful to see context after a match (like error logs).                                                                | grep -A 2 "error" logfile.log → prints matched line + 2 lines after.     |
+| -B n     | Show n lines Before match              | Useful to see what happened before an error/warning.                                                                  | grep -B 2 "error" logfile.log → prints matched line + 2 lines before.    |
+| -C n     | Show n lines Around match              | Shows context both before and after the match.                                                                        | grep -C 3 "error" logfile.log → prints match + 3 lines before & after.   |
+
+# Examples:
+grep "error" logfile.log     # search for "error" in logfile.log
+grep -i "hello" file.txt     # case insensitive
+

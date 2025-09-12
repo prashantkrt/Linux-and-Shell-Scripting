@@ -1,0 +1,55 @@
+docker run → Start a new container.
+-d → Detached mode (runs in background).
+-i → Interactive (keeps STDIN open).
+-t → Allocate a pseudo-TTY (terminal).
+-p 8080:80 → Map port 8080 on host → port 80 in container.
+ubuntu:latest → Use the latest Ubuntu image.
+/bin/bash → The command the container should run on startup.
+
+=> docker run -dit -p 8080:80 ubuntu:latest /bin/bash
+=> or 
+=> docker run \
+    -dit \
+    -p 8080:80 \
+    ubuntu:latest /bin/bash
+
+=> docker ps            # List running containers.
+=> docker ps -a         # List all containers (including stopped ones).
+=> docker images        # List all downloaded Docker images.
+=> docker stop abc123456789  # Stop a running container.
+=> docker start abc123456789 # Start a stopped container.
+=> docker rm abc123456789  # Remove a stopped container.
+=> docker rmi ubuntu:latest # Remove an image.
+=> docker exec -it abc123456789 /bin/bash  # Access a running container's shell.
+
+# Note:
+# docker run → starts a new container.
+# docker exec → runs a command inside an already running container.
+
+# ubuntu image
+docker run -dit \
+    --name ubuntu-container \
+    --hostname ubuntu-dev \
+    --restart unless-stopped \
+    --cpus="2" \
+    --memory="4g" \
+    -p 8080:80 \
+    --env TZ=Asia/Kolkata \
+    --env LANG=en_US.UTF-8 \
+    ubuntu:latest /bin/bash
+
+ => docker ps
+ => docker exec -it ubuntu-container /bin/bash
+
+# Red Hat UBI image:
+docker run -dit \
+  --name myredhat \
+  -p 8080:80 \
+  --memory="512m" \
+  --cpus="1.5" \
+  registry.access.redhat.com/ubi8/ubi:latest \
+  /bin/bash
+
+docker ps
+docker exec -it myredhat /bin/bash  
+
