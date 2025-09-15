@@ -1,0 +1,186 @@
+/
+├── bin
+├── sbin
+├── lib
+├── boot
+├── etc
+├── dev
+├── proc
+├── tmp
+├── var
+├── usr
+├── home
+├── media
+├── mnt
+├── opt
+├── run
+└── srv
+
+
+/
+├── bin/
+├── boot/
+│   └── root/
+├── dev/
+│   └── sbin/
+├── etc/
+│   └── srv/
+├── home/
+├── lib/
+│   └── tmp/
+├── media/
+├── mnt/
+├── opt/
+├── root/
+├── sbin/
+├── srv/
+├── tmp/
+├── usr/
+│   ├── bin/
+│   ├── include/
+│   ├── lib/
+│   └── sbin/
+└── var/
+    ├── cache/
+    ├── log/
+    ├── spool/
+    └── tmp/
+
+
+/
+├── bin/           # Essential commands (ls, cp, mv) 
+│                  # Linux: /bin, Windows: C:\Windows\System32, Mac: /usr/bin
+├── sbin/          # Admin commands (reboot, ifconfig)
+│                  # Linux: /sbin, Windows: Admin tools, Mac: /usr/sbin
+├── lib/           # Libraries for /bin and /sbin programs
+│                  # Linux: /lib, Windows: DLL files, Mac: /usr/lib
+├── boot/          # Boot files (vmlinuz, grub)
+│                  # Linux: /boot, Windows: C:\Windows\Boot, Mac: Boot partition
+├── etc/           # System-wide settings
+│                  # Change username (/etc/passwd), hostname (/etc/hostname), networking
+│                  # Linux: /etc, Windows: registry/config files, Mac: /Library/Preferences
+├── dev/           # Devices as files (sda, tty)
+│                  # Linux: /dev, Windows: Device Manager, Mac: /dev
+├── proc/          # System & process info (cpuinfo, meminfo)
+│                  # Like virtual Task Manager files
+├── tmp/           # Temporary files (cleared on reboot)
+│                  # Linux: /tmp, Windows: C:\Windows\Temp, Mac: /tmp
+├── var/           # Variable data
+│   ├── log/       # Logs (syslog, auth.log)
+│   ├── spool/     # Queues (mail, printing)
+│   └── tmp/       # Temporary runtime files
+│                  # Linux: /var, Windows: Event Viewer/Temp folders, Mac: /var
+├── usr/           # Installed programs & libraries
+│   ├── bin/       # User apps (python3, gcc)
+│   ├── sbin/      # Admin apps (apache2)
+│   ├── lib/       # Libraries for /usr/bin and /usr/sbin
+│   └── local/     # Locally installed apps
+│                  # Linux: /usr, Windows: C:\Program Files, Mac: /Applications
+├── home/          # User personal files
+│                  # Linux: /home/prashant, Windows: C:\Users\username, Mac: /Users/username
+├── media/         # Removable drives (USB, CD)
+├── mnt/           # Temporary mounts
+│                  # Linux: /media or /mnt, Windows: D:\ or E:\, Mac: /Volumes/USB
+├── opt/           # Optional software packages
+│                  # Linux: /opt, Windows: C:\Program Files, Mac: /Applications
+├── run/           # Runtime info (PID files, locks)
+├── srv/           # Service data (web/FTP servers)
+│                  # Linux: /srv/www, Windows: C:\inetpub\wwwroot, Mac: /srv
+
+
+1️⃣ / – Root Directory
+ => What it is: The “top folder” where everything starts.
+ => Windows/Mac equivalent: C:\ on Windows, / on Mac.
+ => What you do here: Usually nothing; don’t delete anything here!
+ => Example: /bin, /home are inside /
+
+ 2️⃣ /bin – Essential Commands
+ => What it is: Holds basic commands everyone can use.
+ => Windows/Mac: Similar to C:\Windows\System32 or /usr/bin on Mac.
+ => You can run: ls (list files), cp (copy files), mv (move/rename files).
+ => Don’t touch: These are critical for the system to work.
+
+ 3️⃣ /sbin – Admin/System Commands
+ => What it is: Commands only admins/root use.
+ => Example: reboot, ifconfig, iptables.
+ => Windows/Mac: Windows admin tools (cmd.exe as admin), Mac /usr/sbin.
+ => Layman: If you’re just using the PC normally, you rarely go here.
+
+4️⃣ /lib – System Libraries
+ => What it is: Holds code files that programs in /bin and /sbin need.
+ => Windows/Mac: DLL files on Windows, /usr/lib on Mac.
+ => Layman: Programs need these “ingredients” to work; don’t change these.
+
+ 5️⃣ /boot – Boot Files
+ => What it is: Where Linux keeps files to start the system.
+ => Example: vmlinuz (kernel), initrd.img.
+ => Windows/Mac: C:\Windows\Boot or Mac boot partition.
+ => Layman: Only touch if you know about Linux booting.
+
+ 6️⃣ /etc – Configuration Files
+ => What it is: System-wide settings are here.
+ => Windows/Mac: Windows registry config files, Mac /Library/Preferences.
+ => You can change:
+ => Username: /etc/passwd
+ => Hostname: /etc/hostname
+ => Networking: /etc/network/interfaces or /etc/netplan/
+ => App configs: /etc/nginx/nginx.conf
+ => Layman: Think of /etc as “settings folder”.
+
+ 7️⃣ /dev – Device Files
+ => What it is: Represents hardware devices as files.
+ => Examples: /dev/sda (hard disk), /dev/tty (terminals).
+ => Windows/Mac: Device Manager, /dev in Mac.
+ => Layman: You don’t usually touch this unless you’re connecting special hardware.
+
+ 9️⃣ /tmp – Temporary Files
+=> What it is: Temporary stuff your programs create.
+=> Windows/Mac: C:\Windows\Temp, /tmp on Mac.
+=> Layman: Safe to delete old files, cleared on reboot.
+
+🔟 /var – Variable Data
+=> What it is: Files that change often.
+=> Subfolders:
+    /var/log → logs (syslog, auth.log)
+    /var/spool → mail/print queues
+    /var/tmp → temporary files that survive reboot
+Layman: “Dynamic data folder.”
+
+1️⃣1️⃣ /usr – User Programs
+=> What it is: Big folder for apps, libraries, and documentation.
+=> Subfolders:
+    /usr/bin → regular apps (python3, gcc)
+    /usr/sbin → admin apps (apache2)
+    /usr/lib → libraries
+    /usr/local → apps you install manually
+=> Windows/Mac: C:\Program Files, /Applications on Mac.
+
+1️⃣2️⃣ /home – User Files
+=> What it is: Each user’s personal files.
+=> Example: /home/prashant, /home/user1
+=> Windows/Mac: C:\Users\Username, /Users on Mac.
+=> You can do: Store docs, downloads, music, config files.
+
+1️⃣3️⃣ /media & /mnt – Mount Points
+=> What it is: Temporary folders for removable drives or mounts.    
+=> Example: /media/usb, /mnt/disk
+=> Windows/Mac: D:\ or /Volumes/USB
+=> Layman: Plug in USB, CD, disk → Linux uses these folders to access them.
+
+1️⃣4️⃣ /opt – Optional Software
+=> What it is: Apps not installed via Linux package manager.
+=> Example: /opt/google/chrome, /opt/eclipse
+=> Windows/Mac: Custom installed apps, C:\Program Files\ or /Applications.
+=> Layman: “Extra apps folder.”
+
+1️⃣5️⃣ /run – Runtime Info
+=> What it is: Files used while system is running.
+=> Example: PID files, lock files.
+=> Layman: Programs leave temporary “running status” info here.
+
+1️⃣6️⃣ /srv – Service Data
+=> What it is: Files for services like web or FTP servers.
+=> Example: /srv/www → web server files
+=> Windows/Mac: Similar to C:\inetpub\wwwroot
+=> Layman: Only for servers, not normal PC users.
+
