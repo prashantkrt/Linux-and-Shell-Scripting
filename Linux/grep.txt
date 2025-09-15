@@ -1,0 +1,269 @@
+👉 grep = “Global Regular Expression Print”
+👉 Used to search text patterns inside files or command outputs.
+
+1. grep "word" file.txt — Search for a word in a file
+
+# Example 1:
+    If file.txt contains:
+    This is a sample text file.
+    It contains multiple lines.
+    We are searching for a specific word.
+=> grep "word" file.txt
+# Output:
+We are searching for a specific word.
+
+# Example 2:
+    If file.txt contains:   
+    Hello World
+    This is Linux
+    Welcome to grep
+=> grep "Linux" file.txt
+# Output:
+This is Linux
+
+2. grep -i "word" file.txt — Case insensitive search
+
+# Example:
+    If file.txt contains:
+    Hello World
+    This is Linux
+    welcome to GREP
+=> grep -i "grep" file.txt
+# Output:
+welcome to GREP
+
+3. grep -n "word" file.txt — Show line numbers with matches
+
+# Example:
+    If file.txt contains:
+    Error: File not found
+    Warning: Low disk space
+    Error: Access denied
+=> grep -n "Error" file.txt
+# Output:
+1:Error: File not found
+3:Error: Access denied
+
+4. grep -v "word" file.txt — Invert match (show non-matching lines)
+
+# Example:
+    If file.txt contains:
+    Success: Operation completed
+    Error: File not found
+    Warning: Low disk space  
+=> grep -v "Error" file.txt
+# Output:
+Success: Operation completed
+Warning: Low disk space 
+
+5. grep -c "word" file.txt — Count number of matches
+# Example:
+    If file.txt contains:
+    fail
+    success
+    fail
+    fail
+=> grep -c "fail" file.txt
+# Output:
+3
+
+6. grep -l "word" *.txt — Show filenames with matches
+# Example:
+    If file1.txt contains:
+    Hello World
+    If file2.txt contains:
+    Hello Universe
+=> grep -l "Universe" *.txt
+# Output:
+file2.txt
+
+7. grep -r "word" /path/to/dir — Recursive search in directories
+# Example 1:
+    If /mydir/file1.txt contains:
+    main function
+    If /mydir/subdir/file2.txt contains:
+    main class
+=> grep -r "main" /mydir
+# Output:
+/mydir/file1.txt:main function
+/mydir/subdir/file2.txt:main class
+
+# Example 2:
+    We have a project folder /project/src/ with 2 files:
+
+    app.java containing:
+       public static void main(String[] args) {
+       System.out.println("Hello from App");
+       }
+
+    utils.java containing:
+       public class Utils {
+           public static void main(String[] args) {
+               System.out.println("Hello from Utils");
+           }
+       }
+
+=> grep -r "main" /project/src
+# Output:
+/project/src/app.java:      public static void main(String[] args) {
+/project/src/utils.java:    public static void main(String[] args) {
+
+# Explanation: grep -r "main" /project/src means → "Look inside every file under /project/src and show me the lines that contain the word main along with their file names."
+grep -r → search recursively in all files under /project/src.
+"main" → the word we are looking for.
+/project/src → directory where the search starts.
+The result shows:
+The filename (app.java or utils.java)
+The line inside the file that contains "main"
+So it finds "main" in both files, and prints the exact line where it appears.    
+
+8. grep -w "word" file.txt — Match whole words only
+
+# Example 1:
+    If file.txt contains:
+    The cat is on the roof.
+    The category is important.
+=> grep -w "cat" file.txt
+# Output:
+The cat is on the roof.
+
+# Example 2:
+    If file.txt contains:
+    Educate yourself.
+    The cat sat on the mat.
+=> grep -w "cat" file.txt
+# Output:
+The cat sat on the mat.
+
+# Example 3:
+    If file.txt contains:
+    The scatter plot is useful.
+    My cat is cute.
+=> grep -w "ca" file.txt
+# Output:
+(no output, since "ca" is part of "scatter" and "cat" but not a whole word)
+
+9. grep -o "pattern" file.txt — Print only the matching part
+
+# Example 1:
+    If file.txt contains:
+    foo1 bar2 foo3 baz4
+=> grep -o "foo[0-9]" file.txt
+# Output:
+foo1
+foo3
+
+# Example 2:
+    If file.txt contains:
+    error123 warning456 error789
+=> grep -o "error[0-9]*" file.txt
+# Output:
+error123
+error789
+
+# Example 3: 
+    If emails.txt contains:
+    user1@gmail.com
+    admin@yahoo.com
+    test@linux.org
+
+=> grep -o "@[a-zA-Z.]\+" emails.txt
+# Output:
+@gmail.com
+@yahoo.com
+@linux.org
+
+# Example 4: 
+    If file.txt contains:
+    The price is $100.
+    Another item costs $250.
+=> grep -o "\$[0-9]\+" file.txt
+# Output:
+$100
+$250
+
+# Example 5: 
+    If log.txt contains:
+    User1 ID=101
+    User2 ID=202
+    User3 ID=303
+=> grep -o "ID=[0-9]\+" log.txt
+# Output:
+ID=101
+ID=202
+ID=303
+
+10. grep -A n "word" file.txt — Show n lines After match
+# Example:
+    If file.txt contains:
+    Line 1
+    Error occurred here
+    Line 3
+    Line 4
+    Line 5      
+=> grep -A 2 "Error" file.txt
+# Output:
+Error occurred here
+Line 3
+Line 4
+
+11. grep -B n "word" file.txt — Show n lines Before match
+# Example:
+    If file.txt contains:
+    Line 1
+    Line 2
+    Error occurred here
+    Line 4
+    Line 5
+=> grep -B 2 "Error" file.txt
+# Output:
+Line 1
+Line 2
+Error occurred here 
+
+12. grep -C n "word" file.txt — Show n lines Around match
+# Example:
+    If file.txt contains:
+    Line 1
+    Line 2      
+    Error occurred here
+    Line 4
+    Line 5
+=> grep -C 2 "Error" file.txt
+# Output:
+Line 1
+Line 2
+Error occurred here
+Line 4
+Line 5      
+
+
+# Summary:  
+| Option   | Meaning                                | Explanation & Use Case                                                                                      | Example                                                                  |    
+| -------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| -i       | Case-insensitive search                | Ignores uppercase/lowercase differences. Useful when you don’t know the exact case of the word.                       | grep -i "hello" file.txt → matches Hello, HELLO, hello.                  |
+| -n       | Show line numbers                      | Prints the line number along with the matching line, helpful for locating matches.                                    | grep -n "error" logfile.log → output like 23:error found.                |
+| -v       | Invert match (show non-matching lines) | Shows all lines that do not match the given pattern. Great for filtering out unwanted data.                           | grep -v "success" file.txt → shows all lines without “success”.          |
+| -c       | Count number of matches                | Displays only the number of matching lines, not the content. Useful for stats.                                        | grep -c "fail" file.txt → outputs 5 if 5 lines match.                    |
+| -l       | Show filenames with matches            | Prints only filenames that contain matches, not the matching lines. Very useful when searching across multiple files. | grep -l "TODO" *.java → prints file names with “TODO”.                   |
+| -r       | Recursive search in directories        | Searches inside all files under the given directory (recursively). Great for searching code/projects.                 | grep -r "main" ./src → finds all occurrences of main in src/.            |
+| -w       | Match whole words only                 | Ensures only exact words match. Without -w, partial matches also appear.                                              | grep -w "cat" file.txt → matches cat, not category or educate.           |
+| -o       | Print only the matching part           | Instead of printing whole line, prints just the matched word/pattern.                                                 | grep -o "foo[0-9]" file.txt → prints foo1, foo2, etc.                    |
+| -A n     | Show n lines After match               | Displays n lines of context after each matching line. Useful for seeing surrounding content.                           | grep -A 2 "Error" file.txt → shows 2 lines after "Error".                |   
+| -B n     | Show n lines Before match              | Displays n lines of context before each matching line. Useful for seeing what led up to a match.                      | grep -B 2 "Error" file.txt → shows 2 lines before "Error".               |
+| -C n     | Show n lines Around match              | Displays n lines of context both before and after each matching line. Useful for full context. | grep -C 2 "Error" file.txt → shows 2 lines before and after "Error".               |
+# Note: You can combine multiple options together, e.g., grep -in "word" file.txt for case-insensitive search with line numbers.
+
+# Examples:
+grep "error" logfile.log      # search for "error" in logfile.log
+grep -i "hello" file.txt      # case insensitive
+grep -n "error" logfile.log   # show line numbers with matches
+grep -v "success" file.txt    # show lines without "success"
+grep -c "fail" file.txt       # count number of matches
+grep -l "TODO" *.java         # show filenames with matches
+grep -r "main" ./src          # recursive search in directories
+grep -w "cat" file.txt        # match whole words only
+grep -o "foo[0-9]" file.txt   # print only the matching part
+grep -A 2 "Error" logfile.log  # show 2 lines after each match
+grep -B 2 "Error" logfile.log  # show 2 lines before each match
+grep -C 2 "Error" logfile.log  # show 2 lines around each match

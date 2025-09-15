@@ -1,0 +1,96 @@
+1. cat file.txt — Display the contents of file.txt.
+
+2. cat file1.txt file2.txt — Print contents of file1.txt then file2.txt (concatenated).
+
+3. cat > newfile.txt — Create or overwrite newfile.txt; type input from keyboard and press Ctrl+D to save & exit.
+
+4. cat filename — View the contents of filename (same as cat file.txt).
+
+5. cat > file — Create or overwrite file with keyboard input; finish with Ctrl+D.
+
+6. cat >> file — Append keyboard input to the end of file (creates file if missing); press Ctrl+D to finish.
+
+7. cat file1 file2 > newfile — Concatenate file1 and file2 and write the result into newfile (overwrites newfile).
+
+# Detailed explanations and examples:
+
+1. cat file.txt — Display the contents of file.txt
+
+# Example:
+cat file.txt
+# Output:
+Hello
+This is a test file.
+Welcome to Linux.
+
+2. cat file1.txt file2.txt — View multiple files together
+# Example:
+cat file1.txt file2.txt
+# Output:
+Contents of file1.
+Contents of file2.
+
+3. cat > newfile.txt — Create or overwrite a file with keyboard input
+Meaning: Create a new file (or overwrite if it exists).
+How it works: After running the command, the terminal waits for you to type text. Whatever you type goes into the file.
+End typing: Press Ctrl+D.
+
+# Example:
+cat > newfile.txt
+Hello
+This is a new file.
+Ctrl+D   # (press this to save & exit)
+
+cat newfile.txt
+# Output:
+Hello
+This is a new file.
+
+4. cat filename — View file (same as cat file.txt)
+# Example
+cat > notes.txt
+Hello
+This is my first note.
+Ctrl+D   # (press this to save & exit)
+
+cat notes.txt
+# Output:
+Hello
+This is my first note.
+
+5. cat >> file — Append to a file (or create if it doesn’t exist)
+cat >> file
+
+Meaning: Append text at the end of an existing file (or create file if it doesn’t exist).
+How it works: Same as above, but instead of replacing content, it adds to the end.
+End typing: Press Ctrl+D.
+
+# Example
+cat >> notes.txt
+This is an additional line.
+Ctrl+D   # (press this to save & exit)
+
+cat notes.txt
+# Output:
+Hello
+This is my first note.
+This is an additional line.
+
+6. cat file1.txt file2.txt > newfile.txt — Merge files into a new file
+If file1.txt has: Apple
+If file2.txt has: Banana
+cat file1.txt file2.txt > newfile.txt
+cat newfile.txt
+# Output:
+Apple
+Banana
+
+# cat > file → overwrite file (old content lost).
+# cat >> file → append to file (old content kept).
+
+Quick summary:
+cat file.txt → Show a file.
+cat file1 file2 → Show multiple files together.
+cat > file → Create/overwrite a file with your input.
+cat >> file → Append to a file with your input.
+cat file1 file2 > newfile → Merge files into another file.

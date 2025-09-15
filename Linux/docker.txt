@@ -53,3 +53,64 @@ docker run -dit \
 docker ps
 docker exec -it myredhat /bin/bash  
 
+# -it
+# -i → interactive (keeps STDIN open).
+# -t → allocates a pseudo-TTY (gives you a terminal interface).
+# Together, -it lets you interact with the container like a normal terminal (so you can type commands).
+
+# -d
+# -d → detached mode (runs in the background, doesn’t attach to your terminal).
+# If you add -d with bash, the shell will run in the background but you won’t see or interact with it. It’s basically useless for a shell session.
+
+# Use -it → when you want to interact with the container (shell, database client, etc.).
+# Use -d → when you want the command to run silently in background inside the container.
+
+
+=> docker run -dit -p 8080:80 ubuntu:latest /bin/bash
+
+docker run → starts a new container from the ubuntu:latest image.
+-d → detached mode, container runs in background.
+-i -t → allocates interactive terminal support (even though you’re detached).
+-p 8080:80 → maps host port 8080 → container port 80.
+/bin/bash → the command that keeps the container alive.
+
+👉 Result:
+A brand new container is created.
+It runs bash as PID 1 inside the container.
+It’s running in the background, so your terminal is free, but the container stays alive.
+You can later attach/exec into it.
+
+
+=> docker exec -it ubuntu-container /bin/bash
+
+docker exec → runs a new process inside an already running container (ubuntu-container).
+-i -t → interactive terminal, so you get control.
+/bin/bash → starts another bash shell process in addition to whatever is already running inside the container.
+
+👉 Result:
+No new container is created.
+You just enter a shell inside the existing container.
+You don’t need -d here because you actually want to interact.
+
+=> docker run ... /bin/bash → creates a new container running bash as its main process.
+=> docker exec ... /bin/bash → opens an extra shell inside an existing container.
+
+# Run = start a new house (container).
+# Exec = enter an already built house and open another room (process).
+
+
+# why we put /bin/bash at the end of docker run command?
+- /bin/bash is the program running inside the container, keeping it alive.
+- If you did not specify /bin/bash, Ubuntu would run its default command (usually /bin/sh or exit immediately if no command).
+- If /bin/bash exits (e.g., you exit from inside), the container will stop — because the main process (PID 1) ended.
+
+
+# docker exec -it ubuntu-container <some-command>
+=> docker exec -it ubuntu-container date
+=> docker exec -it ubuntu-container ls -l /
+=> docker exec -it ubuntu-container echo "Hello from inside"
+=> docker exec -it ubuntu-container bash
+=> docker exec -it ubuntu-container ls /
+=> docker exec -it ubuntu-container echo "hi"
+# docker exec requires you to specify a command to run inside the container.
+# If you just give the container name and nothing else, Docker doesn’t know what to execute.
