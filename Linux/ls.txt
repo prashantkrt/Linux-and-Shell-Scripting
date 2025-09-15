@@ -1,0 +1,175 @@
+1. ls        # List directory contents
+# Example:
+ls
+# Output:
+Documents  Downloads  file.txt  script.sh
+
+
+2. ls -l     # List Files with Details (-l). Permissions, number of links, owner, group, size, modification date, and name.
+# Example:
+ls -l
+# Output:
+-rw-r--r-- 1 prashant users  1024 Sep 15 21:00 file.txt
+drwxr-xr-x 2 prashant users  4096 Sep 15 20:50 Documents
+
+
+3. ls -a    # Show Hidden Files (-a)
+# Example:
+ls -a
+# Output:
+.  ..  .bashrc  .profile  Documents  file.txt
+
+
+4. ls -la    # Long Format + Hidden (-la). Combines -l (long) and -a (hidden).
+# Example:
+ls -la
+# Output:
+drwxr-xr-x  5 prashant users  4096 Sep 15 21:10 .
+drwxr-xr-x 20 prashant users  4096 Sep 10 10:00 ..
+-rw-r--r--  1 prashant users  1024 Sep 15 21:00 file.txt
+
+
+5. ls -lh.  # Human-Readable Sizes (-h). Works with -l to show sizes in KB, MB, GB instead of bytes.
+# Example:
+ls -lh
+# Output:
+-rw-r--r-- 1 prashant users 1.0K Sep 15 21:00 file.txt
+drwxr-xr-x 2 prashant users 4.0K Sep 15 20:50 Documents
+
+
+6. ls -lt   # Lists newest files first. Sort by Time (-t). Shows files sorted by modification time, with the newest first.
+# Example:
+ls -lt
+# Output:
+-rw-r--r-- 1 prashant users 1024 Sep 15 21:00 file.txt
+drwxr-xr-x 2 prashant users 4096 Sep 15 20:50 Documents
+
+
+7. ls -S   # Largest files at top.Sort by Size (-S). Shows files sorted by size, with the largest first.
+# Example:
+ls -lS
+# Output:
+-rw-r--r-- 1 prashant users 2048 Sep 15 21:00 bigfile.log
+-rw-r--r-- 1 prashant users 1024 Sep 15 21:00 file.txt
+drwxr-xr-x 2 prashant users 4096 Sep 15 20:50 Documents
+
+
+8. ls -lr   # Lists oldest files first. Sort by Time (-r). Shows files sorted by modification time, with the oldest first.
+# Example:
+ls -lr   # reverse alphabetical
+ls -ltr  # oldest files first (combine -t for time)
+# Output (for ls -ltr):
+drwxr-xr-x 2 prashant users 4096 Sep 10 10:00 OldFolder
+-rw-r--r-- 1 prashant users 1024 Sep 15 21:00 file.txt
+
+9. ls -d */   # List Only Directories (-d */)
+# Example:
+ls -d */
+# Output:
+Documents/  Downloads/
+
+10. ls -R   # List Files Recursively (-R). s -R lists all files and directories recursively, which means it shows everything in the current directory and all its subdirectories.
+/home/prashant
+├── Documents
+│   ├── doc1.txt
+│   └── doc2.txt
+├── Downloads
+│   └── setup.exe
+└── file.txt
+
+# Example:
+ls -R
+# Output:
+.:
+Documents  Downloads  file.txt
+
+./Documents:
+doc1.txt  doc2.txt
+
+./Downloads:
+setup.exe
+
+Note : .: literally reads as:
+“Here are the contents of the current directory (.)
+
+11. Combine Multiple Options # Example: ls -alhtr
+# Meaning:
+# -a → show hidden files
+# -l → long format
+# -h → human-readable size
+# -t → sort by modification time
+# -r → reverse order
+
+# Example:
+ls -alhtr
+# Output:
+-rw-r--r-- 1 prashant users 1.0K Sep 10 10:00 oldfile.txt
+drwxr-xr-x 2 prashant users 4.0K Sep 15 20:50 Documents
+-rw-r--r-- 1 prashant users 1.0K Sep 15 21:00 file.txt
+
+
+12. ls --color   # Enable colorized output
+# Example:
+ls --color
+# Output: 
+# (Same as normal ls, but files/folders are colored for easier distinction)
+Documents  Downloads  file.txt  script.sh
+
+
+12. Pattern Matching
+# Example:
+ls *.txt     # all files ending with .txt
+ls file*     # all files starting with "file"
+# Output:
+file.txt  file1.txt
+
+--------------------------------------------------------------------------------------------
+/home/prashant       ← parent directory (..)
+│
+└── Documents        ← current directory (.)
+    ├── file1.txt
+    ├── file2.txt
+    └── Notes/
+. → /home/prashant/Documents
+.. → /home/prashant
+
+cd .        # Stay in current directory
+cd ..       # Move up to parent directory
+ls .        # List files in current directory
+ls ..       # List files in parent directory
+
+| Order     | Why                                    |
+| --------- | -------------------------------------- |
+|  .        | Current directory, your starting point |
+|  ..       | Parent directory, one level up         |
+|  .hidden  | Hidden files (user/system config)      |
+|  normal   | Regular files and directories          |
+
+
+
+
+If your current directory does not have any hidden files, then running:
+
+will still always show the two special entries: .  ..
+. and .. are always listed by ls -a, even if there are no hidden files.
+
+
+EExample:
+If my Directory: /home/prashant/Documents contains:
+file1.txt
+file2.txt
+Projects/
+
+=> ls -a
+Output:
+.   ..   file1.txt   file2.txt   Projects/
+
+If it has some hidden files then
+.  ..  .bashrc  .profile  .notes  file1.txt  file2.txt  Projects/
+
+
+This is the pattern 
+. → current directory
+.. → parent directory
+No hidden files exist, so nothing else appears
+Normal files and folders come last
