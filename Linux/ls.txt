@@ -154,7 +154,7 @@ will still always show the two special entries: .  ..
 . and .. are always listed by ls -a, even if there are no hidden files.
 
 
-EExample:
+Example:
 If my Directory: /home/prashant/Documents contains:
 file1.txt
 file2.txt

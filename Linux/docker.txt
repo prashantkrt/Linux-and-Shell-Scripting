@@ -53,6 +53,27 @@ docker run -dit \
 docker ps
 docker exec -it myredhat /bin/bash  
 
+# or we can do it in two steps with simple pull and run commands:
+=> docker pull registry.access.redhat.com/ubi8/ubi
+=> docker run -it registry.access.redhat.com/ubi8/ubi bash
+## You’re dropped inside the container with a prompt like:
+[root@<container_id> /]#
+
+also remember:
+docker run -it ...
+Starts a new container from an image.
+You’re attached to that container’s shell right away.
+Example:
+docker run -it registry.access.redhat.com/ubi8/ubi bash ➝ Creates a fresh container and drops you inside /bin/bash.
+
+
+docker exec -it <container_id> bash
+Runs a command inside an already running container.
+Doesn’t create a new container, just attaches to an existing one. ➝ Opens a bash shell inside the container named mycontainer.
+Example:
+docker exec -it mycontainer bash
+
+Example:
 # -it
 # -i → interactive (keeps STDIN open).
 # -t → allocates a pseudo-TTY (gives you a terminal interface).
