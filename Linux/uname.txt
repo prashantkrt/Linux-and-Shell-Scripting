@@ -1,0 +1,31 @@
+| Command    | Meaning                                                     | Example Output (Linux)   | Example Output (macOS)         |
+| ---------- | ----------------------------------------------------------- | ------------------------ | ------------------------------ |
+| uname      | Prints kernel name                                          | Linux                    | Darwin                         |
+| uname -s   | Same as uname (kernel name)                                 | Linux                    | Darwin                         |
+| uname -r   | Kernel release version                                      | 5.15.0-58-generic        | 23.0.0                         |
+| uname -v   | Kernel version (build info)                                 | #64-Ubuntu SMP ...       | Darwin Kernel Version 23.0.0   |
+| uname -m   | Machine hardware name (architecture)                        | x86_64                   | arm64 (M1/M2/M3/M4)            |
+| uname -p   | Processor type (may show unknown on some systems)           | x86_64                   | arm                            |
+| uname -i   | Hardware platform (sometimes unknown on macOS)              | x86_64                   | unknown                        |
+| uname -o   | Operating system (not available on macOS)                   | GNU/Linux                | ❌ Not supported               |
+| uname -n   | Node name (hostname of the system)                          | prashant-laptop          | MacBook-Pro.local              |
+| uname -a   | All information (combines everything above in one line)     | Linux prashant 5.15...   | Darwin MacBook-Pro...          |
+
+$ uname
+Linux
+
+$ uname -r
+5.15.0-58-generic
+
+$ uname -m
+x86_64
+
+$ uname -a
+Linux prashant 5.15.0-58-generic #64-Ubuntu SMP ... x86_64 GNU/Linux
+
+uname / -s → Kernel name (Linux / Darwin)
+uname -r → Kernel release version
+uname -v → Kernel build version info
+uname -m → Machine hardware (architecture)
+uname -n → Hostname
+uname -a → Everything

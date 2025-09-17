@@ -1,3 +1,47 @@
+command [options] [arguments]
+
+pwd        # print working directory
+ls         # list directory contents
+cd         # change directory
+mkdir      # make directories
+rmdir      # remove empty directories
+rm         # remove files or directories
+cp         # copy files and directories
+mv         # move or rename files and directories
+touch      # create empty files or update file timestamps
+cat        # concatenate and display file contents
+head       # display the first lines of a file¯
+tail       # display the last lines of a file
+grep       # search text using patterns
+find       # search for files in a directory hierarchy
+
+clear                  # clear the terminal screen
+date                   # show current date and time
+cal                    # display calendar of current month
+time                   # show current time
+uname                  # show system information
+hostnamectl            #  used to view and change the hostname and other related system information.
+who                    # show who is logged in
+who -b                 # show last boot time
+w                      # show who is logged in and what they are doing
+uptime                 # show how long the system has been running
+free                   # show memory usage
+free -m                # show memory usage in megabytes
+free -g                # show memory usage in gigabytes
+free -h                # show memory usage in human-readable format
+df                     # show disk space usage
+df -h                  # show disk space usage in human-readable format
+du                     # show directory space usage
+du -h                  # show directory space usage in human-readable format
+du -h /var             # show space usage of /var directory. Each file and subdirectory size.
+whoami                 # show current logged-in user
+which command          # show path of a command
+whereis command        # show all locations of a command
+su - <username>        # switch user
+logname                # show current logged-in user (same as whoami). But whoami shows effective user, logname shows system first user name.
+
+
+
 pwd       # print working directory
 
 ls        # simple list
@@ -53,4 +97,37 @@ grep -i "hello" file.txt     # case insensitive
 # Examples:
 grep "error" logfile.log     # search for "error" in logfile.log
 grep -i "hello" file.txt     # case insensitive
+
+
+uname 
+uname -r
+
+
+# man Command in Linux/macOS
+# The man command means manual.
+# It shows the manual pages (documentation) for commands, system calls, libraries, and more.
+
+man uname
+# uname - display system information
+
+hostnamectl
+   Static hostname: mymachine
+         Icon name: computer-laptop
+           Chassis: laptop
+        Machine ID: abcdef123456
+           Boot ID: 1234abcd5678
+  Operating System: Ubuntu 22.04.3 LTS
+            Kernel: Linux 5.15.0-86-generic
+      Architecture: x86-64
+    Hardware Vendor: Dell Inc.
+     Hardware Model: XPS 13 9370
+       Virtualization: vmware
+
+
+who   
+
+
+su -       # switch to root user (requires root password)
+su prashant  # switch to user 'prashant'
+
 
