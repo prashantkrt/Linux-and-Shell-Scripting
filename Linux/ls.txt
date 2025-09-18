@@ -4,7 +4,6 @@ ls
 # Output:
 Documents  Downloads  file.txt  script.sh
 
-
 2. ls -l     # List Files with Details (-l). Permissions, number of links, owner, group, size, modification date, and name.
 # Example:
 ls -l
@@ -12,13 +11,11 @@ ls -l
 -rw-r--r-- 1 prashant users  1024 Sep 15 21:00 file.txt
 drwxr-xr-x 2 prashant users  4096 Sep 15 20:50 Documents
 
-
 3. ls -a    # Show Hidden Files (-a)
 # Example:
 ls -a
 # Output:
 .  ..  .bashrc  .profile  Documents  file.txt
-
 
 4. ls -la    # Long Format + Hidden (-la). Combines -l (long) and -a (hidden).
 # Example:
@@ -28,14 +25,12 @@ drwxr-xr-x  5 prashant users  4096 Sep 15 21:10 .
 drwxr-xr-x 20 prashant users  4096 Sep 10 10:00 ..
 -rw-r--r--  1 prashant users  1024 Sep 15 21:00 file.txt
 
-
 5. ls -lh.  # Human-Readable Sizes (-h). Works with -l to show sizes in KB, MB, GB instead of bytes.
 # Example:
 ls -lh
 # Output:
 -rw-r--r-- 1 prashant users 1.0K Sep 15 21:00 file.txt
 drwxr-xr-x 2 prashant users 4.0K Sep 15 20:50 Documents
-
 
 6. ls -lt   # Lists newest files first. Sort by Time (-t). Shows files sorted by modification time, with the newest first.
 # Example:
@@ -44,15 +39,19 @@ ls -lt
 -rw-r--r-- 1 prashant users 1024 Sep 15 21:00 file.txt
 drwxr-xr-x 2 prashant users 4096 Sep 15 20:50 Documents
 
-
 7. ls -S   # Largest files at top.Sort by Size (-S). Shows files sorted by size, with the largest first.
-# Example:
+# Example 1:
 ls -lS
 # Output:
 -rw-r--r-- 1 prashant users 2048 Sep 15 21:00 bigfile.log
 -rw-r--r-- 1 prashant users 1024 Sep 15 21:00 file.txt
 drwxr-xr-x 2 prashant users 4096 Sep 15 20:50 Documents
 
+# Example 2:
+ls -s # shows the size of each file 
+# Output:
+4 file.txt
+8 Documents
 
 8. ls -lr   # Lists oldest files first. Sort by Time (-r). Shows files sorted by modification time, with the oldest first.
 # Example:
@@ -63,10 +62,25 @@ drwxr-xr-x 2 prashant users 4096 Sep 10 10:00 OldFolder
 -rw-r--r-- 1 prashant users 1024 Sep 15 21:00 file.txt
 
 9. ls -d */   # List Only Directories (-d */)
-# Example:
+# Example 1:
 ls -d */
 # Output:
 Documents/  Downloads/
+
+# Example 2:
+ls -d /var # lists only the /var directory if it exists
+Output:
+/var
+
+# Example 3:
+ls -d .*  # lists only hidden files and directories
+Output:
+.bashrc  .profile  .notes
+
+# Example 4:
+ls -d /*  # lists all directories in the root /
+Output:
+bin/  boot/  dev/  etc/  home/  lib/  lib64/  media/  mnt/  opt/  proc/  root/  run/  sbin/  srv/  sys/  tmp/  usr/  var/
 
 10. ls -R   # List Files Recursively (-R). s -R lists all files and directories recursively, which means it shows everything in the current directory and all its subdirectories.
 /home/prashant
@@ -173,3 +187,20 @@ This is the pattern
 .. → parent directory
 No hidden files exist, so nothing else appears
 Normal files and folders come last
+
+ls 
+ls -a 
+ls -l
+ls -la
+ls -lh
+ls -lt
+ls -lS
+ls -lr
+ls -d */
+ls -R
+ls -alhtr
+ls --color
+ls *.txt
+ls file*
+ls -r 
+ls -

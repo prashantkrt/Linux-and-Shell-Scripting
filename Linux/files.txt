@@ -1,0 +1,21 @@
+| Symbol | Type                  | Description                                                              |
+| ------ | --------------------- | ------------------------------------------------------------------------ |
+| -      | Regular file          | Normal files (text, binary, images, executables, etc.)                   |
+| d      | Directory             | Folder containing files and other directories                            |
+| l      | Symbolic link         | A shortcut or reference to another file or directory                     |
+| c      | Character device file | Device file that provides serial I/O (e.g., keyboard, mouse, /dev/tty)   |
+| b      | Block device file     | Device file for block storage (e.g., hard drives /dev/sda)               |
+| p      | Named pipe (FIFO)     | Special file for inter-process communication                             |
+| s      | Socket                | Used for communication between processes (local or over network)         |
+
+
+ls -l
+Output:
+-rw-r--r--  1 user user   1234 Sep 18 10:00 file.txt      # regular file (-)
+drwxr-xr-x  2 user user   4096 Sep 18 09:58 Documents/    # directory (d)
+lrwxrwxrwx  1 user user     11 Sep 18 09:59 shortcut -> file.txt  # symbolic link (l)
+crw-rw----  1 root tty  4, 64 Sep 18 09:55 /dev/ttyS0     # character device (c)
+brw-rw----  1 root disk 8, 0 Sep 18 09:55 /dev/sda        # block device (b)
+prw-------  1 user user      0 Sep 18 10:01 mypipe        # named pipe (p)
+srwxr-xr-x  1 user user      0 Sep 18 10:02 my_socket     # socket (s)
+

@@ -1,3 +1,5 @@
+# cat (Concatenate)
+
 1. cat file.txt — Display the contents of file.txt.
 
 2. cat file1.txt file2.txt — Print contents of file1.txt then file2.txt (concatenated).
@@ -11,6 +13,12 @@
 6. cat >> file — Append keyboard input to the end of file (creates file if missing); press Ctrl+D to finish.
 
 7. cat file1 file2 > newfile — Concatenate file1 and file2 and write the result into newfile (overwrites newfile).
+
+8. cat -n file.txt — Display file.txt with line numbers.
+
+9. cat < file (input redirection)  -  < means take input from file instead of the keyboard. So this sends the contents of file into cat’s stdin.
+Also displays the content of myFile.txt.
+(works the same as cat file, but uses redirection).
 
 # Detailed explanations and examples:
 

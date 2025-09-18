@@ -157,10 +157,118 @@ hostnamectl
 
 who   
 
-
 su -       # switch to root user (requires root password)
 su prashant  # switch to user 'prashant'
 
 
+stat myfile.txt
+  File: myfile.txt
+  Size: 0               Blocks: 0          IO Block: 4096   regular empty file
+Device: 802h/2050d      Inode: 1234567     Links: 1
+Access: 2024-10-01 10:00:00.000000000 +0000
+Modify: 2024-10-01 10:00
+Change: 2024-10-01 10:00
+Birth: -
+
+The touch command in Linux is mainly used for two things:
+If the file doesn’t exist, touch will create it.
+If the file already exists, touch will update its access and modification timestamps to the current time.
+touch myfile.txt                  # update to current timestamp
+touch -t 202410011200 myfile.txt  # set specific timestamp (YYYYMMDDhhmm)
+touch -a myfile.txt               # change only access time
+touch -m myfile.txt               # change only modification time
+
+touch file1 file2 file3 → create multiple files at once.
+touch -c file.txt → don’t create the file, only change timestamp if it exists.
+touch -t 202509171200 file.txt → set a custom timestamp (YYYYMMDDhhmm).
+
+## hide the file
+mv file.txt .file.txt  # rename to start with dot (.)
+# to check the hidden files
+ls -a   # lists all files including hidden ones
 
 
+nested directories
+mkdir -p parent/child/grandchild
+
+# to view the directory structure
+tree parent
+parent
+└── child
+    └── grandchild
+
+ls -R parent
+# Recursive listing of all files and directories under 'parent'
+parent:
+child:
+grandchild:
+
+# ls command options
+# 1. ls -l   # Long listing format (-l). Shows detailed info like permissions, owner, size, modification date.
+# Example:
+ls -l
+# Output:
+-rw-r--r-- 1 prashant users 1024 Sep 15 21:00 file.txt
+drwxr-xr-x 2 prashant users 4096 Sep 15 20:50 Documents 
+
+
+# 2. ls -a   # Show all files including hidden files (-a). Hidden files start with a dot (.)
+# Example:
+ls -a
+# Output:
+.  ..  .hiddenfile  file.txt  Documents
+
+
+# 3. ls -la  # Long Format + Hidden (-la). Combines -l (long) and -a (hidden).
+# Example:
+ls -la
+# Output:
+.  ..  .bashrc  .profile  Documents  file.txt
+
+
+# 4. ls -lh.  # Human-Readable Sizes (-h). Works with -l to show sizes in KB, MB, GB instead of bytes.
+# Example:
+ls -lh
+# Output:
+-rw-r--r-- 1 prashant users 1.0K Sep 15 21:00 file.txt
+drwxr-xr-x 2 prashant users 4.0K Sep 15 20:50 Documents
+# 5. ls -lt   # Lists newest files first. Sort by Time (-t). Shows files sorted by modification time, with the newest first.
+# Example:
+ls -lt
+# Output:
+-rw-r--r-- 1 prashant users 1024 Sep 15 21:00 file.txt
+drwxr-xr-x 2 prashant users 4096 Sep 15 20:50 Documents 
+
+
+
+cd .. to go back one directory
+cd ~ to go to home directory
+cd - to go to previous directory
+cd /var/log  # go to /var/log directory
+
+## diff between cd .. and cd -
+
+with cd .. 
+pwd
+/home/user/Documents/Projects
+
+cd ..
+pwd
+/home/user/Documents
+
+
+with cd - like a back button
+pwd
+/home/user/Documents/Projects
+
+cd /var/log
+pwd
+/var/log
+
+cd -
+pwd
+/home/user/Documents/Projects
+
+cd -
+pwd
+/var/log
