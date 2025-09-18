@@ -1,46 +1,77 @@
 command [options] [arguments]
 
-pwd        # print working directory
-ls         # list directory contents
-cd         # change directory
-mkdir      # make directories
-rmdir      # remove empty directories
-rm         # remove files or directories
-cp         # copy files and directories
-mv         # move or rename files and directories
-touch      # create empty files or update file timestamps
-cat        # concatenate and display file contents
-head       # display the first lines of a file
-tail       # display the last lines of a file
-grep       # search text using patterns
-find       # search for files in a directory hierarchy
+1.  pwd        # print working directory
+2.  ls         # list directory contents
+3.  cd         # change directory
+4.  mkdir      # make directories
+5.  rmdir      # remove empty directories
+6.  rm         # remove files or directories
+7.  cp         # copy files and directories
+8.  mv         # move or rename files and directories
+9.  touch      # create empty files or update file timestamps
+10. cat        # concatenate and display file contents
+11. head       # display the first lines of a file
+12. tail       # display the last lines of a file
+13. grep       # search text using patterns
+14. find       # search for files in a directory hierarchy
+15. clear                  # clear the terminal screen
+16. date                   # show current date and time
+17. cal                    # display calendar of current month
+18. time                   # show current time
+19. uname                  # show system information
+20. hostnamectl            #  used to view and change the hostname and other related system information.
+21. who                    # show who is logged in
+22. who -b                 # show last boot time
+23. w                      # show who is logged in and what they are doing
+24. uptime                 # show how long the system has been running
+25. free                   # show memory usage
+26. free -m                # show memory usage in megabytes
+27. free -g                # show memory usage in gigabytes
+28. free -h                # show memory usage in human-readable format
+29. df                     # show disk space usage
+30. df -h                  # show disk space usage in human-readable format
+31. du                     # show directory space usage
+32. du -h                  # show directory space usage in human-readable format
+33. du -h /var             # show space usage of /var directory. Each file and subdirectory size.
+34. whoami                 # show current logged-in user
+35. which command          # show path of a command
+36. whereis command        # show all locations of a command
+37. su - <username>        # switch user
+38. logname                # show current logged-in user (same as whoami). But whoami shows effective user, logname shows system first user name.
 
-clear                  # clear the terminal screen
-date                   # show current date and time
-cal                    # display calendar of current month
-time                   # show current time
-uname                  # show system information
-hostnamectl            #  used to view and change the hostname and other related system information.
-who                    # show who is logged in
-who -b                 # show last boot time
-w                      # show who is logged in and what they are doing
-uptime                 # show how long the system has been running
-free                   # show memory usage
-free -m                # show memory usage in megabytes
-free -g                # show memory usage in gigabytes
-free -h                # show memory usage in human-readable format
-df                     # show disk space usage
-df -h                  # show disk space usage in human-readable format
-du                     # show directory space usage
-du -h                  # show directory space usage in human-readable format
-du -h /var             # show space usage of /var directory. Each file and subdirectory size.
-whoami                 # show current logged-in user
-which command          # show path of a command
-whereis command        # show all locations of a command
-su - <username>        # switch user
-logname                # show current logged-in user (same as whoami). But whoami shows effective user, logname shows system first user name.
+39. man <command>  # show the manual page for a command (help with usage and options)
+40. history  # show command history
+41. echo "text"  # print text to the terminal
+42. chmod <permissions> <file>  # change file permissions
+43. chown <user>:<group> <file>  # change file owner and group
+44. ps  # show running processes
+45. ps aux  # show all running processes in detail
 
-
+46. top  # display real-time running processes and system usage
+47. htop  # interactive process viewer (if installed, better than top)
+48. kill <PID>  # terminate a process by its PID
+49. killall <process_name>  # terminate processes by name
+50. tar -cvf archive.tar files/  # create tar archive
+51. tar -xvf archive.tar  # extract tar archive
+52. gzip file  # compress a file
+53. gunzip file.gz  # decompress a file
+54. ping <hostname>  # check network connectivity to a host
+55. curl <url>  # transfer data from/to a server (test APIs, download files)
+56. wget <url>  # download files from the internet
+57. nano <file>  # open file in nano text editor
+58. vi <file> or vim <file>  # open file in vi/vim editor
+59. less <file>  # view file contents page by page (scrollable)
+60. wc <file>  # show word, line, character, and byte count
+61. sort <file>  # sort lines in a file
+62. uniq <file>  # filter out duplicate lines (often used with sort)
+63. df -Th  # show disk usage with filesystem type in human-readable format
+64. mount  # show mounted filesystems
+65. umount <mount_point>  # unmount a mounted filesystem
+66. ifconfig (or ip addr)  # show network interfaces and IP addresses
+67. netstat -tulnp  # show active network connections (needs net-tools)
+68. ssh user@host  # connect to a remote system via SSH
+69. scp file user@host:/path/  # copy files securely between systems
+70. exit  # log out from current shell session
 
 pwd       # print working directory
 
