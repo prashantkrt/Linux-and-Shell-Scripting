@@ -10,7 +10,7 @@ cp         # copy files and directories
 mv         # move or rename files and directories
 touch      # create empty files or update file timestamps
 cat        # concatenate and display file contents
-head       # display the first lines of a file¯
+head       # display the first lines of a file
 tail       # display the last lines of a file
 grep       # search text using patterns
 find       # search for files in a directory hierarchy
@@ -129,5 +129,7 @@ who
 
 su -       # switch to root user (requires root password)
 su prashant  # switch to user 'prashant'
+
+
 
 
