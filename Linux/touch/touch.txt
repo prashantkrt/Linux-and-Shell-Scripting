@@ -1,0 +1,58 @@
+Linux touch Command Notes
+
+The touch command in Linux is used to create empty files or update the timestamps of existing files.
+
+1. Create a New Empty File
+$ touch file1.txt
+Creates an empty file named file1.txt if it does not exist.
+
+2. Create Multiple Files at Once
+$ touch file1.txt file2.txt file3.log
+Creates multiple empty files in a single command.
+
+3. Update Timestamp of an Existing File
+$ touch file1.txt
+If file1.txt already exists, touch updates its last access and modification time.
+
+4. Do Not Create New File (-c)
+$ touch -c fileX.txt
+Updates timestamp only if file exists. Does not create a new file.
+
+5. Set a Custom Date and Time (-t)
+$ touch -t 202509220930 file1.txt
+Sets file timestamp to 22 Sep 2025, 09:30.
+Format: [[CC]YY]MMDDhhmm[.ss]
+
+6. Use Reference File for Timestamp (-r)
+$ touch -r ref.txt target.txt
+Sets target.txt timestamp same as ref.txt.
+
+7. Create Hidden Files
+$ touch .hiddenfile
+Creates a hidden file (starts with .).
+
+8. Combine with ls -la
+$ touch report.txt notes.md .hidden
+$ ls -la
+Shows all newly created files including hidden ones.
+touch report.txt notes.md .hidden
+
+Here you are creating multiple files at once:
+report.txt (normal file)
+notes.md (normal file)
+.hidden (a hidden file, because it starts with .)
+
+ls -la
+This is a separate command, not combined with touch.
+You’re simply listing all files (including hidden files) in the directory, so you can see the files you just created.
+
+Quick Summary:
+$ touch file.txt           Create new empty file
+$ touch f1 f2 f3           Create multiple files
+$ touch file.txt           Update timestamp of existing file
+$ touch -c file.txt        Update timestamp only if file exists
+$ touch -t YYYYMMDDhhmm file.txt   Set custom time
+$ touch -r ref.txt target.txt      Copy timestamp from another file
+$ touch .hiddenfile        Create hidden file
+
+touch is mostly used for quick file creation and modifying timestamps.
