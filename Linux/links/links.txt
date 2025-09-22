@@ -1,0 +1,119 @@
+Hard Links
+Soft Links (Symbolic Links)
+
+Create a Hard Link
+$ ln original.txt hardlink.txt
+The ln command in Linux is used to create links between files. By default, it creates hard links.
+ls -l original.txt hardlink.txt
+Both files point to the same inode (same data on disk). Deleting one does not affect the other.
+
+## Example with Inode Numbers
+# Create a file
+echo "Hello Linux" > original.txt
+
+# Create hard link
+ln original.txt hardlink.txt
+
+# List with inode numbers
+ls -i
+
+Output:
+12345 hardlink.txt  12345 original.txt
+# Output will show inode numbers for each file
+
+$ ls -li
+12345 -rw-r--r-- 2 prashant users 12 Sep 22 20:10 hardlink.txt
+12345 -rw-r--r-- 2 prashant users 12 Sep 22 20:10 original.txt
+
+
+## Edit Through Hard Link
+echo "New Line Added" >> hardlink.txt
+cat original.txt
+# Output:
+Hello Linux
+New Line Added
+
+✅ Both files show updated data because they share the same inode.
+
+
+## Delete Original File
+rm original.txt
+cat hardlink.txt
+# Output:
+Hello Linux
+New Line Added
+✅ hardlink.txt still works because it points to the same inode.
+
+Create a Soft Link (Symbolic Link)
+$ ln -s original.txt softlink.txt
+The -s flag creates a symbolic link (soft link).
+ls -l original.txt softlink.txt
+The soft link points to the original file by name, not by inode.
+lrwxrwxrwx 1 prashant users 12 Sep 22 20:15 softlink.txt -> original.txt
+
+$ echo "Linux World" > original.txt
+$ ln -s original.txt softlink.txt
+$ ls -i
+
+Output:
+12346 original.txt   12347 softlink.txt
+Different inodes: softlink.txt just points to the path.
+
+$ ls -li
+Output:  
+12346 -rw-r--r-- 1 prashant users 12 Sep 22 20:15 original.txt
+12347 lrwxrwxrwx 1 prashant users 20 Sep 22 20:15 softlink.txt -> original.txt
+
+## readlink command shows the target of the symlink
+$ readlink softlink.txt
+Output:
+original.txt
+
+
+## Edit Through Soft Link
+$ echo "Another Line" >> softlink.txt
+$ cat original.txt
+Output:
+Linux World
+Another Line
+✅ Both files show updated data because softlink.txt points to original.txt.
+
+## Delete Original File
+$ rm original.txt
+$ cat softlink.txt
+cat: softlink.txt: No such file or directory
+❌ softlink.txt is broken because the original file is deleted.
+## Summary
+Hard Link:
+- Points directly to the inode (data on disk).
+- Both files remain valid if one is deleted.
+- Cannot span different filesystems.
+Soft Link (Symbolic Link):
+- Points to the file name (path).
+- Becomes broken if the original file is deleted.
+- Can span different filesystems.
+
+
+The readlink command in Linux is used to display the target of a symbolic link (symlink).
+ln -s original.txt softlink.txt
+readlink softlink.txt
+
+In case of hard links, readlink does not apply because hard links point directly to the inode, not to a path.
+
+# For Soft Link
+ls -i origianl.txt 
+# Output:
+12345 original.txt
+
+ls -i softlink.txt
+# Output:
+12346 softlink.txt
+
+# For Hard Link
+$ ls -i original.txt
+# Output:
+12345 original.txt
+$ ls -i hardlink.txt
+# Output:
+12345 hardlink.txt
+

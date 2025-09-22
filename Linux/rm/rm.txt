@@ -1,0 +1,61 @@
+rm Command in Linux
+
+The rm command is used to remove (delete) files and directories in Linux.
+ Once deleted using rm, files are not moved to Trash/Recycle Bin — they are permanently deleted.
+
+ syntax:
+ rm [options] file1 file2 ...
+
+ Commonly Used Options
+-f → Force delete (ignore non-existent files, never prompt).
+-i → Interactive mode (ask before deleting each file).
+-r or -R → Recursive delete (used for directories and their contents).
+-v → Verbose (show what is being deleted).
+
+1. Remove a file
+$ rm filename.txt
+Output:
+$ ls
+file2.txt
+
+2. Remove multiple files
+$ rm file1.txt file2.txt file3.txt
+Output:
+$ ls
+(no output, files are deleted)
+
+3. Remove a directory and its contents recursively
+$ rm -r directory_name
+Output:
+$ ls
+(no output, directory and its contents are deleted)
+
+4. Remove all .log files in the current directory
+$ rm *.log
+Output:
+$ ls
+(no output, all .log files are deleted)
+
+5. Remove without confirmation
+$ rm -rf my_folder/
+Output:
+$ ls
+(no output, my_folder and its contents are deleted)
+
+6. Verbose deletion  # Shows each file being deleted inside my_folder.
+$ rm -rv my_folder/
+Output:
+removed 'my_folder/file1.txt'
+removed 'my_folder/file2.txt'
+removed directory: 'my_folder'
+$ ls
+(no output, my_folder and its contents are deleted)
+
+7. Safe delete (interactive)
+$ rm -i my_folder/
+rm: remove directory 'my_folder'? y
+$ ls
+(no output, my_folder and its contents are deleted)
+
+8. never run ## This will try to delete everything on your system.
+$ rm -rf /
