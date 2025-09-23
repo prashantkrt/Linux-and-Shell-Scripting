@@ -1,0 +1,200 @@
+## Compression Tools
+Common compression tools in Linux include:
+1. gzip(used for files not directories)
+   - Compress: gzip filename (creates filename.gz)
+   - Decompressed: gunzip filename.gz (restores original file)
+   - File Extensions: .gz for gzip compressed files
+
+2. bzip2(used for files not directories)
+   - Compress: bzip2 filename (creates filename.bz2)
+   - Decompressed: bunzip2 filename.bz2 (restores original file)
+   - File Extensions: .bz2 for bzip2 compressed files
+
+3. zip(used for files and directories)
+   - Compress: zip archive.zip file1 file2 (creates archive.zip)
+   - Decompressed: unzip archive.zip (extracts files)
+   - File Extensions: .zip for zip compressed files
+   - Cons: Slightly less efficient than gzip/bzip2/xz.
+   - Pros: Cross-platform (works on Linux, Windows, macOS).
+
+4. xz / unxz(used for files not directories)
+   - Extension: .xz
+   - Commands:
+     - Compress: xz filename (creates filename.xz)
+     - Decompress: unxz filename.xz (restores original file)
+
+Command Examples:
+
+- To compress a file using gzip:
+  $ gzip myfile.txt                         # creates the myfile.txt.gz file and deletes the original myfile.txt
+- To decompress a gzip file:
+  $ gunzip myfile.txt.gz                    # restores the original myfile.txt
+- Keep original file while compressing with gzip:
+  $ gzip -c myfile.txt > myfile.txt.gz      # creates myfile.txt.gz and keeps myfile.txt
+  $ gzip -k myfile.txt                      # creates myfile.txt.gz and keeps myfile.txt
+
+with gzip -c myfile.txt > myfile.txt.gz
+-c → write the compressed data to stdout (terminal output).
+> → redirect that compressed output into a new file (myfile.txt.gz)
+
+with gzip -k myfile.txt
+-k → explicitly keep the original file while still creating the compressed .gz file.
+Internally, gzip still compresses the file, but the -k flag prevents it from deleting the source file.
+
+=> gzip -c > file.gz → More manual; you’re using redirection.
+=> gzip -k file → More direct; gzip itself ensures the original file is kept.
+
+- To compress a file using bzip2:
+  $ bzip2 myfile.txt                      # creates the myfile.txt.bz2 file and deletes the original myfile.txt
+- To decompress a bzip2 file:
+  $ bunzip2 myfile.txt.bz2                # restores the original myfile.txt
+- Keep original file while compressing with bzip2:
+  $ bzip2 -k myfile.txt                   # creates myfile.txt.bz2 and keeps myfile.txt
+  $ bzip2 -c myfile.txt > myfile.txt.bz2  # creates myfile.txt.bz2 and keeps myfile.txt
+
+- To compress a file using zip:
+  $ zip myfile.zip myfile.txt      # creates the myfile.zip file containing myfile.txt
+- To decompress a zip file:
+  $ unzip myfile.zip              # extracts myfile.txt from myfile.zip
+
+- To compress multiple files into a zip archive:
+  $ zip myarchive.zip file1.txt file2.txt
+- To extract files from a zip archive:
+  $ unzip myarchive.zip
+- List contents of zip without extracting:
+  $ unzip -l myarchive.zip
+
+
+| Tool   | File Extension |
+|--------|----------------|
+| gzip   | .gz            |
+| bzip2  | .bz2           |
+| zip    | .zip           |
+
+| Tool   | Compress Command                | Decompress Command         | Extension |
+|--------|---------------------------------|----------------------------|-----------|
+| gzip   | gzip file.txt                   | gunzip file.txt.gz         | .gz       |
+| bzip2  | bzip2 file.txt                  | bunzip2 file.txt.bz2       | .bz2      |
+| zip    | zip archive.zip file1 file2     | unzip archive.zip          | .zip      |
+
+
+## note : Use gzip and bzip2 for single-file compression, and zip for multiple files packaged together.
+
+---------------------------------------------------------------------------------------------------------------------
+## Tape Archive
+tar (with compression)
+Extension: .tar.gz, .tar.bz2, .tar.xz
+## tar is used to archive multiple files/folders into a single file (called a tarball).
+It doesn’t compress by itself, but it can work with compression tools like gzip, bzip2, and xz.
+
+1. Create a tarball (archive) without compression:
+  $ tar -cvf archive.tar folder/
+  -c: create a new archive
+  -v: verbose output (list files being processed)
+  -f: specify the archive file name
+
+$ tar -cvf archive.tar file1.txt file2.txt dir/
+Creates archive.tar containing file1.txt, file2.txt, and dir/  
+Example Output (verbose):
+file1.txt
+file2.txt
+dir/
+dir/file3.txt
+
+
+2. Archive with gzip compression
+
+$ tar -czvf archive.tar.gz file1.txt file2.txt dir/ 
+   ##   -z: use gzip compression
+   ##   Creates archive.tar.gz (gzip-compressed).
+
+3. Archive with bzip2 compression
+$ tar -cjvf archive.tar.bz2 file1.txt file2.txt dir/
+   ##   -j: use bzip2 compression
+   ##   Creates archive.tar.bz2 (bzip2-compressed).
+   ##   Creates archive.tar.bz2 (better compression, slower).
+
+4. Archive with xz compression
+$ tar -cJvf archive.tar.xz file1.txt file2.txt dir/
+   ##   -J: use xz compression
+   ##   Creates archive.tar.xz (xz-compressed).
+   ##   Creates archive.tar.xz (best compression, slowest).
+
+Extracting Archives
+1. Extract a tarball without compression:
+  $ tar -xvf archive.tar
+  -x: extract files from an archive
+  -v: verbose output
+  -f: specify the archive file name
+
+2. Extract .tar.gz (gzip-compressed):
+  $ tar -xzvf archive.tar.gz
+  -z: use gzip decompression
+
+3. Extract .tar.bz2 (bzip2-compressed):
+  $ tar -xjvf archive.tar.bz2
+  -j: use bzip2 decompression
+
+4. Extract .tar.xz (xz-compressed):
+  $ tar -xJvf archive.tar.xz
+  -J: use xz decompression
+
+
+Listing Contents of an Archive
+To list contents without extracting:
+$ tar -tvf archive.tar
+$ tar -tzvf archive.tar.gz
+$ tar -tjvf archive.tar.bz2
+$ tar -tJvf archive.tar.xz
+
+## without -v (verbose), it just lists filenames:
+## The -v (verbose) option in tar (and many Linux commands) means: show me what’s happening, step by step.
+## It provides detailed information about what the command is doing.
+
+tar -czf archive.tar.gz files/    # gzip tarball
+tar -cjf archive.tar.bz2 files/   # bzip2 tarball
+tar -cJf archive.tar.xz files/    # xz tarball
+tar -xzf archive.tar.gz           # extract gzip tarball
+tar -xjf archive.tar.bz2          # extract bzip2 tarball   
+tar -xJf archive.tar.xz           # extract xz tarball
+
+Format      | Option   | Extension   | Best For
+----------- | -------- | ----------- | ----------------------------------------
+Plain tar   | -cvf     | .tar        | Just archiving (no compression)
+Gzip tar    | -czvf    | .tar.gz     | Fast compression, most common
+Bzip2 tar   | -cjvf    | .tar.bz2    | Better compression, slower
+XZ tar      | -cJvf    | .tar.xz     | Best compression ratio, slowest
+
+why do we need compression with tar?
+- Tar alone just bundles files together without reducing size.
+- Compression (gzip, bzip2, xz) reduces the overall file size for storage and transfer.
+- Different compression methods offer trade-offs between speed and compression ratio.
+
+Compression tools (gzip, bzip2, xz, zip)
+
+- These tools only compress a single file.
+- If you run them on multiple files, you’ll just end up with multiple compressed files.
+Example with gzip:
+$ gzip file1.txt file2.txt
+Creates file1.txt.gz and file2.txt.gz separately.
+- To compress multiple files into one compressed archive, you first need to bundle them using tar, then compress the resulting tarball.
+Example:
+$ tar -cvf archive.tar file1.txt file2.txt dir/
+$ gzip archive.tar
+Creates archive.tar.gz containing all files.
+
+or in one step:
+$ tar -czvf archive.tar.gz file1.txt file2.txt dir/
+Creates a gzip-compressed tarball directly.
+
+Archiving tools (tar)
+
+tar bundles multiple files/folders into one archive (like a box 📦).
+By itself, it doesn’t compress — just packs files together.
+But with -z, -j, or -J, it also compresses the archive.
+$ tar -czvf archive.tar.gz file1.txt file2.txt dir/
+Creates archive.tar.gz (gzip-compressed tarball).
+
+zip does both archiving + compression, and it’s cross-platform (Windows, macOS, Linux).
+But in Linux/Unix world, tar is more common and more efficient for handling large numbers of files.
+tar supports multiple compression algorithms (gzip, bzip2, xz, zstd) whereas zip only uses the ZIP algorithm.

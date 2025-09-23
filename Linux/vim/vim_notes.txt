@@ -1,0 +1,141 @@
+# Vi / Vim Command Notes
+vi Visible Interface 
+vim Improved Version of vi Visible Interface Model
+
+Vim is a powerful text editor for Linux. Below are some basic commands and examples.
+
+When you are in Vim and press i, you go into Insert Mode.
+In Insert Mode, Vim behaves like a normal text editor:
+You can type text freely.
+You can press Enter/Return to move to a new line.
+You can use Backspace to delete characters.
+
+By default in Vim, the mouse is disabled. That means you can’t click to move the cursor (unless you enable it in settings).
+Instead, Vim expects you to move the cursor using keyboard commands while in Normal Mode (not Insert Mode).
+
+In Insert Mode (when you press i), Vim behaves almost like a normal text editor.
+That means cursor movement is very limited — mostly with arrow keys and Enter.
+
+Here’s what you can do in Insert Mode:
+Moving the cursor in Insert Mode
+← ↑ → ↓ (Arrow keys) → move left, up, right, down.
+Enter/Return → move the cursor to a new line below.
+Backspace → delete left and move cursor left.
+Ctrl-h → same as Backspace.
+Ctrl-w → delete previous word.
+Ctrl-u → delete to the beginning of the line.
+
+⚡ But you cannot use h, j, k, l, w, b, etc. (they only work in Normal Mode).
+
+So usually the workflow is:
+=>  Press i → insert some text.
+=>  Press Esc → back to Normal Mode.
+=>  Move cursor around with h j k l w b 0 $ etc.
+=>  Press i again where you want to type.
+
+Basic cursor movement keys in Normal Mode:
+h → move left
+l → move right
+j → move down
+k → move up
+
+
+👉 Think of them like arrow keys, but under your right hand on the keyboard.
+Example:
+
+## 1. Open a File
+$ vim filename.txt
+- Opens filename.txt in Vim. Creates the file if it doesn't exist.
+
+## 2. Modes in Vim
+- Normal Mode: For navigation and commands (default)
+- Insert Mode: For typing text. Press i to enter
+- Command Mode: For saving, quitting, etc. Press : to enter
+
+## Syntax
+- Commands are case-sensitive
+- Use Esc to return to Normal Mode from Insert or Command Mode
+$ vi/vim [arguments] filename
+- Arguments can include options like -R (read-only), +n (start at line n), etc.
+
+## 3. Basic Navigation
+h   Move left
+l   Move right
+k   Move up
+j   Move down
+
+Example:
+Hello World
+↑
+Press h to move cursor left, l to move right
+
+## 4. Insert Text
+i   Insert before cursor
+a   Insert after cursor
+o   Open new line below
+O   Open new line above
+
+## 5. Save and Quit (first press Esc to enter Normal Mode) then type:
+:w     Save file
+:q     Quit
+:wq    Save and quit
+:q!    Quit without saving
+
+Example:
+:wq    Saves the file and exits Vim
+
+## 6. Delete Text
+x    Delete character under cursor
+dw   Delete word
+dd   Delete current line
+d$   Delete to end of line
+
+Example:
+Hello World
+Cursor on W
+Command: dw removes World
+
+## 7. Undo and Redo
+u        Undo last change
+Ctrl+r   Redo
+
+## 8. Copy, Cut, and Paste
+yy   Yank (copy) a line
+p    Paste after cursor
+P    Paste before cursor
+dd   Cut (delete) a line
+
+## 9. Search
+/word   Search forward for word
+?word   Search backward for word
+n       Next occurrence
+N       Previous occurrence
+
+## 10. Replace
+rX                Replace character under cursor with X
+:%s/old/new/g     Replace all occurrences of old with new
+:%s/old/new/gc    Replace all with confirmation
+
+## 11. Open Multiple Files
+$ vim file1.txt file2.txt
+
+Switch between files:
+:next   Next file
+:prev   Previous file
+
+## 12. Split Windows
+:split filename    Horizontal split
+:vsplit filename   Vertical split
+Ctrl+w w           Switch between windows
+
+## 13. Force Quit
+:q!    Quit without saving
+
+# Summary
+
+- Insert Mode: i, a, o
+- Save/Quit: :w, :q, :wq, :q!
+- Navigation: h, j, k, l
+- Delete: dd, dw
+- Undo/Redo: u, Ctrl+r
+- Search/Replace: /word, :%s/old/new/g

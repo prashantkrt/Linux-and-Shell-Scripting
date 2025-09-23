@@ -413,3 +413,106 @@ Su Mo Tu We Th Fr Sa
 13 14 15 16 17 18 19
 20 21 22 23 24 25 26
 27 28 29 30 31  
+
+
+======================================================================
+filter 
+wc 
+wc -wc myfile.txt
+
+file command: determine the file type
+
+file myfile
+
+head command 
+tail command
+
+
+# display content with pages 
+more and less commands 
+f: forward b:backward 
+
+tr command -> transalete byte by byte or character by character
+
+cat > java 
+This is  java ctrl + d 
+
+tr "a" "A" < java
+tr "aeiou" "AEIOU" < java
+
+tr "a-z" "A-Z" < java
+
+tr -s " " < java # word space 
+
+tr -s " " < java >>java2 
+
+paste command 
+
+cat > statets 
+Punjab 
+Haryana 
+Gujrat 
+
+cat > capitals
+Chandigard
+Chnadigarh
+Ahemdbad
+
+paste states capitals
+
+paste -d "@" stated captials 
+paste -d ":" states capitals 
+
+paste -d ":" states capitals  >> newfile
+
+echo  commands 
+
+## comparison commands 
+diff  # compare line by line 
+cmp  # diffeneciate character by charatctewr or byte by byte 
+
+## cut command 
+# The cut command is used to extract sections from each line of input (usually files).
+# Common options:
+#   -f : specify fields (with -d)
+#   -d : specify delimiter (default is TAB)
+
+cat > emp
+eno  ename   edesignation   esalary
+1    Rajat   Manager        50000
+2    Priya   Developer      45000
+3    Amit    Analyst        40000
+4    Neha    Tester         35000
+
+# Examples:
+
+# Show only the first field (employee number)
+cut -d " " -f1 emp
+
+# Show only the name and designation fields
+cut -d " " -f2,3 emp
+
+# Show salary column
+cut -d " " -f4 emp
+
+# With a CSV file (comma separated)
+# cut -d "," -f2,4 employees.csv
+
+sort command 
+sort file contents
+
+sort file
+sort -r file
+sort -u file # eliminate the repeated lines
+
+uniq command
+uniq -u sample.txt # show only unique lines
+uniq -d sample.txt # show only duplicate lines
+
+Important commands 
+sed 
+grep 
+find 
+pipe command
+
+
