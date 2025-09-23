@@ -33,6 +33,48 @@ So usually the workflow is:
 =>  Move cursor around with h j k l w b 0 $ etc.
 =>  Press i again where you want to type.
 
+
+Vim Modes and How to Enter Them
+1. Normal Mode
+
+The default mode when you open Vim.
+Used for navigation, deleting, copying, pasting, etc.
+If you’re ever lost, press Esc to get back here.
+
+How to enter:
+Press Esc (from any mode).
+
+2. Insert Mode
+
+Used for typing text, like a regular editor.
+In Normal Mode, use these keys:
+Command  | Action
+---------|--------------------------------------------------------
+i        | Insert before cursor
+I        | Insert at beginning of line
+a        | Append (insert after cursor)
+A        | Append at end of line
+o        | Open new line below and start insert
+O        | Open new line above and start insert
+cw       | Change word (delete + enter insert mode)
+Exit Insert Mode: Press Esc.
+
+Command-line Mode
+
+For commands (save, quit, search, replace).
+Starts with : at the bottom of Vim.
+
+How to enter:
+From Normal Mode, press : → type command (e.g., :wq).
+: → file commands (save, quit, jump to line)
+Exit Command-line Mode:
+Press Esc before entering the command.
+Command-line Mode (: at bottom)
+Starts when you type : / ?.
+Used for save/quit (:wq, :q!) or search (/word).
+
+
+Open Vim → it starts in Normal mo
 Basic cursor movement keys in Normal Mode:
 h → move left
 l → move right
@@ -69,21 +111,25 @@ Hello World
 ↑
 Press h to move cursor left, l to move right
 
-## 4. Insert Text
-i   Insert before cursor
-a   Insert after cursor
-o   Open new line below
-O   Open new line above
+## 4. Insert Text options
+i   Insert before cursor                        # To begin typing before the cursor position. Starts insert mode just before the cursor.
+I   Insert beginning of the current line        # To begin typing at the beginning of the current line
+a   Append to the next word of the currentline  # Starts insert mode just after the cursor.
+A   Append at the next word of the current line # Append at the end of the line. Moves cursor to the end of the line and enters insert mode.
+o   Open new line before cursor                 # Open new line below the current line
+O   Open new line after cursor                  # Open new line above the current line. Creates a new line above the cursor line, enters insert mode.
 
 ## 5. Save and Quit (first press Esc to enter Normal Mode) then type:
 :w     Save file
 :q     Quit
 :wq    Save and quit
 :q!    Quit without saving
+:wq!   Force save and quit
 
 Example:
 :wq    Saves the file and exits Vim
 
+###n Normal Mode, when you press keys like d, w, y, p etc., you are giving Vim commands directly.
 ## 6. Delete Text
 x    Delete character under cursor
 dw   Delete word
@@ -91,6 +137,10 @@ dd   Delete current line
 d$   Delete to end of line
 
 Example:
+You are in Normal Mode (not Insert, not Command-line).
+dw means: delete word starting from cursor.
+So it deletes World.
+
 Hello World
 Cursor on W
 Command: dw removes World
