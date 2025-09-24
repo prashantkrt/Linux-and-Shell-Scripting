@@ -129,7 +129,7 @@ O   Open new line after cursor                  # Open new line above the curren
 Example:
 :wq    Saves the file and exits Vim
 
-###n Normal Mode, when you press keys like d, w, y, p etc., you are giving Vim commands directly.
+### Normal Mode, when you press keys like d, w, y, p etc., you are giving Vim commands directly.
 ## 6. Delete Text
 x    Delete character under cursor
 dw   Delete word

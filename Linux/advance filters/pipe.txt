@@ -1,0 +1,50 @@
+rpm -qa | grep "package_name"
+rpm -qa | grep -i "package_name"
+rpm -qa | grep -v "package_name" # Exclude lines with "package_name"
+rpm -qa | grep -c "package_name" # Count lines with "package_name"
+rpm -qa | grep -n "package_name" # Show line numbers with "package_name"
+rpm -qa | grep -l "package_name" # List files with "package_name"
+rpm -qa | grep -L "package_name" # List files without "package_name"
+rpm -qa | grep -E "pattern1|pattern2" # Extended regex: match pattern1 or pattern2
+rpm -qa | grep -w "exact_word" # Match whole word "exact_word"
+rpm -qa | grep -A 3 "package_name" # Show 3 lines after match
+rpm -qa | grep -B 2 "package_name" # Show 2 lines before match
+rpm -qa | grep -C 2 "package_name" # Show 2 lines before and after match
+rpm -qa | grep -o "pattern" # Show only the matched part of the line
+rpm -qa | grep --color=auto "package_name" # Highlight matches with color
+rpm -qa | grep -F "fixed_string" # Match fixed string (no regex)
+rpm -qa | grep -q "package_name" # Quiet mode, no output, just return status
+rpm -qa | grep -R "pattern" /path/to/directory # Recursively search in directory
+rpm -qa | grep -s "pattern" file.txt # Suppress error messages
+rpm -qa | grep -Z "pattern" # Output null-separated results (useful for xargs)
+rpm -qa | grep --binary-files=text "pattern" # Treat binary files as text
+rpm -qa | grep --binary-files=without-match "pattern" # Ignore binary files
+rpm -qa | grep --exclude="*.log" -r "pattern" /path/to/directory # Exclude .log files in recursive search
+rpm -qa | grep --include="*.txt" -r "pattern" /path/to/directory # Include only .txt files in
+rpm -qa | grep --line-buffered "pattern" # Line-buffered output (useful for real-time output) recursive search
+rpm -qa | grep --null "pattern" # Output null-separated results (useful for xargs)
+rpm -qa | grep --only-matching "pattern" # Show only the matched part of the line
+rpm -qa | grep --perl-regexp "perl_regex" # Use Perl-compatible regex
+rpm -qa | grep --word-regexp "exact_word" # Match whole word "exact_word"
+rpm -qa | grep --after-context=3 "package_name" # Show 3 lines after match
+rpm -qa | grep --before-context=2 "package_name" # Show 2 lines before match
+rpm -qa | grep --context=2 "package_name" # Show 2 lines before and after match
+rpm -qa | grep --count "package_name" # Count lines with "package_name"
+rpm -qa | grep --files-with-matches "package_name" # List files with "package_name"
+rpm -qa | grep --files-without-matches "package_name" # List files without "package_name"
+rpm -qa | grep --line-number "package_name" # Show line numbers with "package_name"
+rpm -qa | grep --invert-match "package_name" # Exclude lines with "package_name"
+rpm -qa | grep --extended-regexp "pattern1|pattern2" # Extended regex: match pattern1 or pattern2
+rpm -qa | grep --fixed-strings "fixed_string" # Match fixed string (no regex)
+rpm -qa | grep --quiet "package_name" # Quiet mode, no output, just return status
+rpm -qa | grep --recursive "pattern" /path/to/directory # Recursively search in directory
+rpm -qa | grep --silent "pattern" file.txt # Suppress error messages
+rpm -qa | grep --text "pattern" # Treat binary files as text
+rpm -qa | grep --with-filename "pattern" # Show filenames with matches
+rpm -qa | grep --no-filename "pattern" # Suppress filenames in output
+rpm -qa | grep --color=always "package_name" # Always highlight matches with color
+rpm -qa | grep --color=never "package_name" # Never highlight matches with color
+
+
+
+

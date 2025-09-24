@@ -1,0 +1,89 @@
+$ find / -name "filename"  # Search for a file named "filename" starting from the root directory
+$ find / -name "filename" >> /dev/null # Search for a file named "filename" starting from the root directory
+
+$ find /path/to/search -name "filename"  # Search for a file named "filename" in the specified directory and its subdirectories
+/path/to/search/filename        (a file)
+/path/to/search/dir/filename    (a directory)
+# Searches for any item (file OR directory) with the exact name "filename".
+# It does not restrict to only files.
+
+## only files or only directories specific
+$ find /path/to/search -type f -name "filename"  # Find files named "filename"
+
+$ find /path/to/search -type d -name "dirname"  # Find directories named "dirname"
+
+## files with specific extension
+$ find /path/to/search -type f -name "*.txt"  # Find all .txt files
+$ find /path/to/search -type f -iname "*.jpg"  # Case-insensitive search for .jpg files
+
+## empty files
+$ find /path/to/search -type f -empty  # Find empty files
+
+## case-insensitive search
+$ find /path/to/search -type f -iname "filename"  # Case-insensitive search for files named "filename"
+
+## delete empty files
+$ find /path/to/search -type f -empty -delete  # Find and delete empty files
+$ find /path/to/search -type f -empty -exec rm {} \;  # Alternative way to delete empty files
+# -exec runs another command (rm) on each matched file.
+# {} is replaced by the current filename.
+# \; ends the -exec statement.
+# More flexible → you can replace rm with other commands.
+
+## find and delete
+$ find /path/to/search -type f -name "*.log" -delete  # Find and delete all .log files
+$ find /path/to/search -type f -name "*.log" -exec rm {} \;  # Alternative way to delete .log files
+
+## find with size
+$ find /path/to/search -type f -size +10M  # Find files larger than 10MB
+$ find /path/to/search -type f -size -100k  # Find files smaller than 100KB
+$ find /path/to/search -type f -size 1G  # Find files exactly 1GB in size
+
+##find based on creation time 
+$ find /path/to/search -type f -ctime -7  # Find files created in the last 7 days
+$ find /path/to/search -type f -ctime +30  # Find files created more than 30 days ago
+$ find /path/to/search -type f -ctime 10  # Find files created exactly 10 days ago
+
+## find based on modification time
+$ find /path/to/search -type f -mtime -7  # Find files modified in the last 7 days
+$ find /path/to/search -type f -mtime +30  # Find files modified more than 30 days ago
+$ find /path/to/search -type f -mtime 10  # Find files modified exactly 10 days ago
+
+## find based on access time
+$ find /path/to/search -type f -atime -7  # Find files accessed in the last 7 days
+$ find /path/to/search -type f -atime +30  # Find files accessed more than 30 days ago
+$ find /path/to/search -type f -atime 10  # Find files accessed exactly 10 days ago
+
+## -mmin 
+$ find /path/to/search -type f -mmin -60  # Find files modified in the last 60 minutes
+$ find /path/to/search -type f -mmin +120  # Find files modified more than 120 minutes ago
+$ find /path/to/search -type f -mmin 30  # Find files modified exactly 30 minutes ago
+
+## find and execute command : find <path> <conditions> -exec <command> {} \;
+{} → placeholder for the current file found. Think of {} as a "variable" that holds the current filename.
+\; → ends the exec command
++ (instead of \;) → runs the command on multiple files at once (faster)
+Every time find matches a file, it plugs the filename into {} and runs the command
+
+1. Delete all .log files
+$ find /path/to/search -type f -name "*.log" -exec rm {} \;  # Find and delete all .log files
+
+2. Count lines in .txt files
+$ find /path/to/search -type f -name "*.txt" -exec wc -l {} \;  # Find all .txt files and count lines in each
+Output:
+  10 /path/to/search/file1.txt
+  25 /path/to/search/file2.txt
+  ...
+
+3. Change permissions of .sh files
+$ find /path/to/search -type f -name "*.sh" -exec chmod +x {} \;  # Find all .sh files and make them executable
+
+4. Search for a word in found files
+$ find . -type f -name "*.java" -exec grep -H "main" {} \;
+
+$ find /path/to/search -type f -name "*.tmp" -exec rm {} \;  # Find and delete all .tmp files
+$ find /path/to/search -type f -name "*.bak" -exec mv {} /backup/directory/ \;  # Find and move all .bak files to backup directory
+
+find . → search starting from the current directory and all its subdirectories.
+find .. → search starting from the parent directory.
+find / → search the entire filesystem (root).
