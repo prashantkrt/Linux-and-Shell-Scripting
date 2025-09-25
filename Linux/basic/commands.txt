@@ -38,40 +38,46 @@ command [options] [arguments]
 36. whereis command        # show all locations of a command
 37. su - <username>        # switch user
 38. logname                # show current logged-in user (same as whoami). But whoami shows effective user, logname shows system first user name.
-
-39. man <command>  # show the manual page for a command (help with usage and options)
-40. history  # show command history
-41. echo "text"  # print text to the terminal
-42. chmod <permissions> <file>  # change file permissions
+39. man <command>                # show the manual page for a command (help with usage and options)
+40. history                      # show command history
+41. echo "text"                  # print text to the terminal
+42. chmod <permissions> <file>   # change file permissions
 43. chown <user>:<group> <file>  # change file owner and group
-44. ps  # show running processes
-45. ps aux  # show all running processes in detail
+44. ps                           # show running processes
+45. ps aux                       # show all running processes in detail
+46. top                           # display real-time running processes and system usage
+47. htop                          # interactive process viewer (if installed, better than top)
+48. kill <PID>                    # terminate a process by its PID
+49. killall <process_name>        # terminate processes by name
+50. tar -cvf archive.tar files/   # create tar archive
+51. tar -xvf archive.tar          # extract tar archive
+52. gzip file                     # compress a file
+53. gunzip file.gz                # decompress a file
+54. ping <hostname>               # check network connectivity to a host
+55. curl <url>                    # transfer data from/to a server (test APIs, download files)
+56. wget <url>                    # download files from the internet
+57. nano <file>                   # open file in nano text editor
+58. vi <file> or vim <file>       # open file in vi/vim editor
+59. less <file>                   # view file contents page by page (scrollable)
+60. wc <file>                     # show word, line, character, and byte count
+61. sort <file>                   # sort lines in a file
+62. uniq <file>                   # filter out duplicate lines (often used with sort)
+63. df -Th                        # show disk usage with filesystem type in human-readable format
+64. mount                         # show mounted filesystems
+65. umount <mount_point>          # unmount a mounted filesystem
+66. ifconfig (or ip addr)         # show network interfaces and IP addresses
+67. netstat -tulnp                # show active network connections (needs net-tools)
+68. ssh user@host                 # connect to a remote system via SSH
+69. scp file user@host:/path/     # copy files securely between systems
+70. exit                          # log out from current shell session
 
-46. top  # display real-time running processes and system usage
-47. htop  # interactive process viewer (if installed, better than top)
-48. kill <PID>  # terminate a process by its PID
-49. killall <process_name>  # terminate processes by name
-50. tar -cvf archive.tar files/  # create tar archive
-51. tar -xvf archive.tar  # extract tar archive
-52. gzip file  # compress a file
-53. gunzip file.gz  # decompress a file
-54. ping <hostname>  # check network connectivity to a host
-55. curl <url>  # transfer data from/to a server (test APIs, download files)
-56. wget <url>  # download files from the internet
-57. nano <file>  # open file in nano text editor
-58. vi <file> or vim <file>  # open file in vi/vim editor
-59. less <file>  # view file contents page by page (scrollable)
-60. wc <file>  # show word, line, character, and byte count
-61. sort <file>  # sort lines in a file
-62. uniq <file>  # filter out duplicate lines (often used with sort)
-63. df -Th  # show disk usage with filesystem type in human-readable format
-64. mount  # show mounted filesystems
-65. umount <mount_point>  # unmount a mounted filesystem
-66. ifconfig (or ip addr)  # show network interfaces and IP addresses
-67. netstat -tulnp  # show active network connections (needs net-tools)
-68. ssh user@host  # connect to a remote system via SSH
-69. scp file user@host:/path/  # copy files securely between systems
-70. exit  # log out from current shell session
+=======================================================================
+# Basic Linux Commands Cheat Sheet
+
+date      # show current date and time
+$ date
+Output:
+Mon Oct  1 10:15:30 UTC 2024
 
 pwd       # print working directory
 
@@ -142,10 +148,10 @@ grep -C 3 "error" logfile.log  # show 3 lines before and after each "error" matc
 ## uname command
 uname        # basic system info
 uname -a     # all details (kernel name, hostname, kernel version, architecture, etc
-uname -r    # kernel version
-uname -s    # kernel name
-uname -m    # machine hardware name (architecture)
-uname -n    # network node hostname
+uname -r     # kernel version
+uname -s     # kernel name
+uname -m     # machine hardware name (architecture)
+uname -n     # network node hostname
 
 ## man command
 $ man uname 
@@ -181,12 +187,11 @@ prashant  pts/0        2024-10-01 09:00
 john      pts/1        2024-10-01 09:30 (idle)
 mary      pts/2        2024-10-01 09:45 (10 minutes ago)
 
-
 su -         # switch to root user (requires root password)
 su prashant  # switch to user 'prashant'
 
 ## The stat command in Linux is used to display detailed information about files and directories (more detailed than ls -l).
-stat myfile.txt
+$ stat myfile.txt
   File: myfile.txt
   Size: 0               Blocks: 0          IO Block: 4096   regular empty file
 Device: 802h/2050d      Inode: 1234567     Links: 1
@@ -195,7 +200,7 @@ Modify: 2024-10-01 10:00
 Change: 2024-10-01 10:00
 Birth: -
 
-stat file.txt
+$ stat file.txt
   File: file.txt
   Size: 1024      	Blocks: 8          IO Block: 4096   regular file
 Device: 802h/2050d	Inode: 131083      Links: 1
@@ -208,17 +213,17 @@ Change: 2025-09-22 09:59:01.000000000 +0530
 The touch command in Linux is mainly used for two things:
 If the file doesn’t exist, touch will create it.
 If the file already exists, touch will update its access and modification timestamps to the current time.
-touch myfile.txt                  # update to current timestamp
-touch -t 202410011200 myfile.txt  # set specific timestamp (YYYYMMDDhhmm)
-touch -a myfile.txt               # change only access time
-touch -m myfile.txt               # change only modification time
+$ touch myfile.txt                  # update to current timestamp
+$ touch -t 202410011200 myfile.txt  # set specific timestamp (YYYYMMDDhhmm)
+$ touch -a myfile.txt               # change only access time
+$ touch -m myfile.txt               # change only modification time
 
-touch file1 file2 file3 → create multiple files at once.
-touch -c file.txt → don’t create the file, only change timestamp if it exists.
-touch -t 202509171200 file.txt → set a custom timestamp (YYYYMMDDhhmm).
+$ touch file1 file2 file3 → create multiple files at once.
+$ touch -c file.txt → don’t create the file, only change timestamp if it exists.
+$ touch -t 202509171200 file.txt → set a custom timestamp (YYYYMMDDhhmm).
 
 ## hide the file
-mv file.txt .file.txt  # rename to start with dot (.)
+$ mv file.txt .file.txt  # rename to start with dot (.)
 # to check the hidden files
 ls -a   # lists all files including hidden ones
 
@@ -388,7 +393,6 @@ cd -
 pwd
 /var/log
 
-
 =======================================================================
 $ date; pwd; cal:
 output:
@@ -416,62 +420,367 @@ Su Mo Tu We Th Fr Sa
 
 
 ======================================================================
-filter 
-wc 
-wc -wc myfile.txt
+
+# wc command: word, line, byte count
+$ wc myfile.txt
+10  50  300 myfile.txt
+# Output: lines words bytes filename
+# lines Basically, how many rows of text the file has.
+# words Basically, how many individual words are in the file.
+# bytes Basically, how many bytes of data the file contains. Total file size in bytes.
+
+$ wc -l myfile.txt
+10 myfile.txt
+
+$ wc -w myfile.txt
+50 myfile.txt
+
+$ wc -c myfile.txt
+300 myfile.txt
+
+# -l : lines
+# -w : words
+# -c : bytes
+
+$ wc -wc myfile.txt
+50 300 myfile.txt
+# combine options to show words and bytes
 
 file command: determine the file type
+$ file myfile
+myfile: ASCII text
 
-file myfile
+=======================================================================
+Head and Tail commands
 
-head command 
-tail command
+1. Default usage (first 10 lines)
+$ head notes.txt
+Line 1
+Line 2
+...
+Line 10
+
+2. Specify number of lines
+$ head -n 5 notes.txt
+Line 1
+Line 2
+Line 3
+Line 4
+Line 5
+
+3. Show first N bytes instead of lines
+$ head -c 20 notes.txt
+This is the first 20
+
+4. Multiple files
+$ head -n 3 file1.txt file2.txt
+==> file1.txt <==
+first 3 lines...
+
+==> file2.txt <==
+first 3 lines...
 
 
-# display content with pages 
-more and less commands 
-f: forward b:backward 
+1. Default usage (last 10 lines)
+$ tail notes.txt
+Line 91
+Line 92
+...
+Line 100
 
-tr command -> transalete byte by byte or character by character
+2. Specify number of lines
+$ tail -n 5 notes.txt
+Line 96
+Line 97
+Line 98
+Line 99
+Line 100  
 
-cat > java 
-This is  java ctrl + d 
+3. Show last N bytes instead of lines
+$ tail -c 20 notes.txt
+the last 20 bytes.
 
-tr "a" "A" < java
-tr "aeiou" "AEIOU" < java
+4. Follow file for real-time updates (like logs)
+$ tail -f logfile.log
+# Press Ctrl+C to stop following
 
-tr "a-z" "A-Z" < java
+$ tail -f /var/log/syslog
+Keeps printing new lines as they are added (great for monitoring logs).
+Stop with Ctrl + C.
 
-tr -s " " < java # word space 
+5. Show last 20 lines and keep following
+$ tail -n 20 -f app.log
+Shows last 20 lines and then continues to show new lines as they are added.
+==========================================================================
+# display content with pages
+more and less commands
 
-tr -s " " < java >>java2 
+more filename
+# view file page by page (forward only)
+# Shows the file one screen/page at a time.
+# You can scroll forward, but not backward (very limited compared to less).
 
+Common keys in more:
+Space → Next page (scroll one screen down).
+Enter → Next line.
+q → Quit.
+f → Forward one screen (same as space).
+
+less filename
+# view file page by page (forward and backward)
+# less is more advanced than more, allows backward navigation
+# less supports searching within the file using /pattern
+# Press q to quit less
+
+Common keys in less:
+
+Space → Next page.
+Enter → Next line.
+f → Forward one page (same as space).
+b → Backward one page.
+↑ / ↓ arrows → Move one line up/down.
+g → Go to beginning of file.
+G → Go to end of file.
+type to search the work -> /word → Search forward for “word”.
+Press n → next match.
+Press N → previous match.
+q → Quit.
+
+$ cat /var/log/syslog
+This will flood the terminal 
+better use more or less
+$ cat /var/log/syslog | more
+$ cat /var/log/syslog | less
+
+or directly
+
+$ more /var/log/syslog
+$ less /var/log/syslog
+
+more = basic pager (forward only). Displays the file page by page.
+less = advanced pager (forward, backward, search, navigation).
+==========================================================================
+tr command
+# translate characters
+tr command -> translate byte by byte or character by character
+The tr command works on standard input → standard output, character by character.
+
+-d option: delete characters
+-s option: squeeze characters (replace multiple with single)
+
+$ echo "hello world" | tr 'a-z' 'A-Z'
+Output: HELLO WORLD
+
+$ echo "apple banana cherry" | tr ' ' '\n'
+apple
+banana
+cherry
+
+$ echo "My phone number is 12345" | tr -d '0-9'
+Output: My phone number is
+
+$ echo "Hello     World   !!!" | tr -s ' '
+Output: Hello World !!!
+
+$ echo -e "Line1\nLine2\nLine3" | tr -d '\n'
+Output: Line1Line2Line3
+
+$ echo "abc123xyz789" | tr -cd '0-9'. ## keep only digits
+Output: 123789
+
+cat > java
+This is java ctrl + d
+
+$ tr "a" "A" < java
+Output: This is jAvA
+
+$ tr "aeiou" "AEIOU" < java
+Output: ThIs Is jAvA
+
+$ tr "a-z" "A-Z" < java
+Output: THIS IS JAVA
+
+$ tr "A-Z" "a-z" < java
+Output: this is java
+
+$ tr -d "a" < java  # delete a
+Output: This is jv ctrl + d
+
+$ tr -d "aeiou" < java  # delete vowels
+Output: Ths s jv ctrl + d
+
+$ tr -d "A-Z" < java  # delete uppercase
+Output: his is java ctrl + d
+
+$ tr -d "a-z" < java  # delete lowercase
+Output:    ctrl + d
+
+lets say now in the file we have 
+This   is   jaaava
+JAVA IS GREAT
+
+$ tr -s "a" < java  # squeeze multiple a into one
+Output: 
+This   is   java
+JAVA IS GREAT
+
+$ tr -s "aeiou" < java  # squeeze multiple vowels into one
+Output: 
+This   is   java
+JAVA IS GREAT
+👉 Consecutive as reduced to single a.
+
+$ tr -s "A-Z" < java  # squeeze multiple uppercase into one
+Output: 
+This   is   jaaava
+JAVA IS GREAT
+👉 No effect here, since no uppercase letters are repeated consecutively.
+if suppouse data would be this : 
+This   is   java
+JAAAAVA ISSS THEER NOOW
+then output would be
+This   is   java
+JAVA IS THEER NOW
+
+$ tr -s "a-z" < java  # squeeze multiple lowercase into one
+Output: 
+This is java
+JAVA IS GREAT
+👉 All consecutive lowercase letters are reduced to single letters.
+
+$ tr -s " " < java  # squeeze multiple spaces into one
+Output: 
+This is jaaava
+JAVA IS GREAT
+
+$ tr -s " " < java >>java2
+Output: 
+This is jaaava
+JAVA IS GREAT
+# appends the squeezed output to java2 file
+
+===========================================================================
 paste command 
 
-cat > statets 
+cat > states
 Punjab 
 Haryana 
 Gujrat 
 
 cat > capitals
-Chandigard
-Chnadigarh
-Ahemdbad
+Chandigarh
+Chandigarh
+Ahmedabad
 
 paste states capitals
 
-paste -d "@" stated captials 
-paste -d ":" states capitals 
+paste -d "@" states capitals
+paste -d ":" states capitals
+paste -d ":" states capitals >> newfile
 
-paste -d ":" states capitals  >> newfile
+output:
+Punjab@Chandigarh
+Haryana@Chandigarh
+Gujrat@Ahmedabad
 
-echo  commands 
+Punjab:Chandigarh
+Haryana:Chandigarh
+Gujrat:Ahmedabad
 
-## comparison commands 
-diff  # compare line by line 
-cmp  # diffeneciate character by charatctewr or byte by byte 
+newfile content:
+$ cat newfile
+Punjab:Chandigarh
+Haryana:Chandigarh
+Gujrat:Ahmedabad
 
-## cut command 
+===========================================================================
+echo commands 
+
+echo "Hello, World!"  # prints Hello, World!
+echo $HOME            # prints the value of HOME environment variable
+echo $PATH            # prints the value of PATH environment variable
+echo $USER            # prints the current logged-in user
+echo $SHELL           # prints the current shell (e.g., /bin/bash)
+echo $PWD             # prints the current working directory
+echo $RANDOM          # prints a random number
+echo $((5 + 3))       # prints the result of arithmetic expression (8)
+echo "Today is $(date)" # prints "Today is" followed by current date
+echo -n "Hello"       # prints Hello without a newline at the end
+echo -e "Line1\nLine2" # -e enables interpretation of backslash escapes. Prints Line1 and Line2 on separate lines.
+
+===========================================================================
+## comparison commands
+diff  # compare line by line
+cmp  # diffeneciate character by charatctewr or byte by byte
+
+File file1.txt:
+Hello
+World
+Linux
+
+File file2.txt:
+Hello
+Word
+Linux OS
+
+diff file1 file2
+# Output:
+2c2
+< World
+---
+> Word
+3c3
+< Linux
+---
+> Linux OS
+
+Explanation:
+
+Line 2: World (in file1) vs Word (in file2).
+Line 3: Linux vs Linux OS.
+
+2c2 → line 2 in file1 should be changed (c) to match line 2 in file2.
+< World → line in file1.
+> Word → line in file2.
+--- → separator between the two.
+
+3c3
+< Linux
+---
+> Linux OS
+# 3c3 → line 3 in file1 should be changed (c) to match line 3 in file2.
+< Linux → line in file1.
+> Linux OS → line in file2.
+--- → separator between the two.
+
+## diff -y command (side-by-side comparison)
+$ diff -y file1.txt file2.txt
+# Output:
+Hello          Hello
+World         | Word
+Linux         | Linux OS
+
+## Compares character by character (byte level). Shows where the first difference occurs.
+
+File file1.txt:
+Hello 
+
+File file2.txt:
+Hella
+
+cmp file1 file2
+# Output:
+file1 file2 differ: byte 5, line 1
+# Explanation:
+file1 file2 differ: byte 5, line 1 → The files differ at byte 5 of line 1.
+# In file1, byte 5 is 'o', while in file2, byte 5 is 'a'.
+
+----------------- 
+Note: If files are identical, there is no output.
+
+===========================================================================
+
+## cut command
 # The cut command is used to extract sections from each line of input (usually files).
 # Common options:
 #   -f : specify fields (with -d)
@@ -487,32 +796,185 @@ eno  ename   edesignation   esalary
 # Examples:
 
 # Show only the first field (employee number)
-cut -d " " -f1 emp
+$ cut -d " " -f1 emp
+# Output:
+eno
+1
+2
+3
+4 
 
 # Show only the name and designation fields
-cut -d " " -f2,3 emp
+$ cut -d " " -f2,3 emp
+# Output:
+ename edesignation
+Rajat Manager
+Priya Developer
+Amit Analyst
+Neha Tester
 
 # Show salary column
-cut -d " " -f4 emp
+$ cut -d " " -f4 emp
+# Output:
+esalary
+50000
+45000
+40000
+35000
+
+$ cut -d "," -f2,4 emp
+# Output:
+ename,esalary
+Rajat,50000
+Priya,45000
+Amit,40000
+Neha,35000
 
 # With a CSV file (comma separated)
 # cut -d "," -f2,4 employees.csv
-
-sort command 
+=======================================================================
+# sort command 
 sort file contents
 
-sort file
-sort -r file
+sort file # sort in ascending order (default)
+sort -r file # sort in descending order
+sort -n file # sort numerically
 sort -u file # eliminate the repeated lines
+
+Example: 
+cat > numbers.txt
+5
+2
+8
+1
+4
+3
+7
+$ sort numbers.txt
+Output:
+1
+2
+3     
+4
+5
+7
+8
+$ sort -r numbers.txt
+Output:
+8
+7
+5
+4
+3
+2
+1
+$ sort -n numbers.txt
+Output:
+1
+2
+3
+4
+5
+7
+8
+$ sort -nr numbers.txt
+Output:
+8
+7
+5     
+4
+3
+2
+1
+$ sort -u numbers.txt
+Output:
+1
+2
+3
+4
+5
+7
+8
+
+=======================================================================
+# uniq command: filter out duplicate lines (often used with sort)
+# Common options:
+#   -c : count occurrences of each line
+#   -d : show only duplicate lines
+#   -u : show only unique lines 
+# Note: uniq only removes adjacent duplicate lines, so usually you sort the file first.
+# Examples:
+cat > sample.txt
+apple
+banana
+apple
+orange
+banana
+apple
+banana
+orange
+orange
+$ sort sample.txt | uniq -c  # count occurrences of each line
+# Output:
+# 3 apple
+# 3 banana
+# 3 orange
+
+$ uniq sample.txt  # remove adjacent duplicates (no count)
+# Output:
+apple
+banana
+apple
+orange
+banana
+apple
+banana
+orange
+orange
+
+# To effectively use uniq, sort the file first:
+$ sort sample.txt | uniq
+# Output:
+apple
+banana
+orange  
+
 
 uniq command
 uniq -u sample.txt # show only unique lines
 uniq -d sample.txt # show only duplicate lines
 
-Important commands 
-sed 
-grep 
-find 
-pipe command
+======================================================================
+filter commands: 
+sed # stream editor for filtering and transforming text
+$ sed 's/old/new/g' file.txt  # replace 'old' with 'new' globally in file.txt
 
+grep # search for patterns in files
+$ grep 'pattern' file.txt  # print lines matching 'pattern' in file.txt
 
+pipe # send output of one command as input to another
+$ command1 | command2  # use | to pipe output from command1 to command2
+
+find # search for files and directories based on criteria
+$ find /path -name "filename"  # find files named 'filename' in /path
+$ find /path -type f -size +10M  # find files larger than 10MB in /path
+
+======================================================================
+
+permissions commands:
+chmod # change file permissions
+
+rwx for user, group, others
+r=4, w=2, x=1
+category u=user, g=group, o=others, a=all
+# Numeric method: chmod 755 file.sh (rwxr-xr-x)
+# Symbolic method: chmod u+x file.sh (add execute for user)
+
+# Examples:
+chmod 755 script.sh  # rwxr-xr-x
+chmod 644 file.txt   # rw-r--r--
+chmod u+x script.sh  # add execute permission for user
+chmod g-w file.txt   # remove write permission for group
+chmod o-r file.txt   # remove read permission for others
+chmod a+x script.sh  # add execute permission for all (user, group, others)
+chmod u=rwx,g=rx,o=r file.txt  # set specific permissions  

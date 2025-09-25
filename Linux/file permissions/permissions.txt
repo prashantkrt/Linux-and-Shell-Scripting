@@ -1,0 +1,185 @@
+In Linux, file permissions control who can read, write, or execute a file or directory. 
+
+Each file and directory has three types of permissions: read (r), write (w), and execute (x). These permissions can be set for three categories of users: the owner of the file, the group associated with the file, and others (everyone else).
+
+The permissions are represented in a 10-character string, such as `-rwxr-xr--`.
+The first character indicates the type (e.g., `-` for a regular file, `d` for a directory), and the next nine characters are grouped into three sets of three, representing the permissions for the owner, group, and others, respectively.
+
+🔹 Types of Permissions
+
+Each file/directory has three types of permissions:
+
+Read (r)
+For files → allows reading the contents.
+For directories → allows listing its contents.
+
+Write (w)
+For files → allows modifying or deleting contents.
+For directories → allows creating, deleting, or renaming files inside.
+
+Execute (x)
+For files → allows running it as a program/script.
+For directories → allows entering (cd) into it.
+
+
+🔹 Permission Groups
+Permissions are assigned to three groups: 
+Owner (u) → the user who owns the file. First three example: rwx
+Group (g) → users in the file’s group. Next three: r-x
+Others (o) → everyone else. Last three: r--
+
+Maximum permissions a file can have is rwxrwxrwx (777 in numeric form).
+Minimum is --------- (000 in numeric form).
+
+🔹 Numeric Representation of Permissions
+rwx => 7 (read + write + execute)=> 4+2+1
+rw- => 6 (read + write) => 4+2
+r-x => 5 (read + execute) => 4+1
+r-- => 4 (read only) => 4
+-wx => 3 (write + execute) => 2+1
+-w- => 2 (write only) => 2
+--x => 1 (execute only) => 1
+--- => 0 (no permissions) => 0
+
+
+$ ls -l
+-rwxr-xr--  1 prashant users  1024 Sep 25 19:00 script.sh
+
+Breakdown:
+
+- → file type (- = file, d = directory)
+rwx → Owner has read, write, execute
+r-x → Group has read, execute
+r-- → Others have read only
+
+In this example:
+- The owner (prashant) has read, write, and execute permissions (rwx).
+- The group (users) has read and execute permissions (r-x).
+- Others have only read permission (r--).
+
+🔹 1. Check Current Permissions
+$ ls -l prashant.txt
+-rw-r--r--  1 prashant users  1024 Sep 25 19:00 notes.txt
+
+Here:
+
+Owner → rw- (read + write)
+Group → r-- (read only)
+Others → r-- (read only)
+
+So only you (the owner) can edit notes.txt, everyone else can just read it.
+
+🔹 2. Give Execute Permission (run a script)
+=> Say you wrote a shell script:
+$ echo "echo Hello World" > hello.sh
+but by default, it won't be executable.
+By default: -rw-r--r--  hello.sh
+
+It’s just a text file. To make it runnable:
+$ chmod +x hello.sh
+Now: -rwxr-xr-x  hello.sh
+Now you can run it:
+$ ./hello.sh
+Hello World
+Note: 
+./ → means run the file from the current directory
+. = current directory
+./file = run file in current directory
+
+
+🔹 3. Restrict Access (make private)
+You have a file with sensitive info:
+-rw-r--r--  secrets.txt
+Anyone can read it. To make it private:
+$ chmod 600 secrets.txt
+Now: -rw-------  secrets.txt
+Only you can read and write it. No one else has any access.
+
+🔹 4. Share Executable with Others
+If you want everyone to run a program:
+chmod 755 app.sh
+Now: -rwxr-xr-x  app.sh
+Owner can read, write, execute.
+Group and others can read and execute, but not modify.
+
+🔹 5. Allow Group Members to Edit
+If you want to allow group members to edit a file:
+$ chmod 664 notes.txt
+Now: -rw-rw-r--  notes.txt
+Owner and group can read and write, others can only read.
+
+
+| Value | Permission | Meaning         |
+| ----- | ---------- | --------------- |
+| 7     | rwx        | full access     |
+| 6     | rw-        | read + write    |
+| 5     | r-x        | read + execute  |
+| 4     | r--        | read only       |
+| 3     | -wx        | write + execute |
+| 2     | -w-        | write only      |
+| 1     | --x        | execute only    |
+| 0     | ---        | no access       |
+
+So:
+chmod 777 file → everyone can do anything (⚠️ unsafe).
+chmod 644 file → owner can edit, others can read.
+chmod 755 dir → owner full, others can list/enter.
+
+🔹 Common chmod Commands
+$ chmod +x file.sh          # Add execute permission
+$ chmod -x file.sh          # Remove execute permission
+$ chmod 755 script.sh       # Owner: rwx, Group: r-x, Others: r-x
+$ chmod 644 document.txt    # Owner: rw-, Group: r--, Others: r--
+$ chmod 600 private.txt     # Owner: rw-, Group: ---, Others: ---
+$ chmod 777 public.txt      # Owner, Group, Others: rwx
+$ chmod 664 shared.txt      # Owner: rw-, Group: rw-, Others: r--
+$ chmod 400 read-only.txt   # Owner: r--, Group: ---, Others: ---
+$ chmod 200 write-only.txt  # Owner: -w-, Group: ---, Others: ---
+$ chmod 111 execute-only.sh # Owner, Group, Others: --x
+$ chmod u+x file.sh         # Add execute permission for owner
+$ chmod g+w file.txt        # Add write permission for group
+$ chmod o-r file.txt        # Remove read permission for others
+$ chmod u=rwx,g=rx,o=r file.txt # Set specific permissions
+$ chmod ugo-rwx file.txt  # Remove all permissions for everyone
+$ chmod ugo+rwx file.txt # Give all permissions to everyone
+$ chmod 0 file.txt  # Remove all permissions (000)
+$ chmod 1 file.txt  # Set execute-only for owner (001)
+$ chmod 4 file.txt  # Set read-only for owner (004)
+$ chmod 6 file.txt  # Set read-write for owner (006)
+$ chmod 7 file.txt  # Set read-write-execute for owner (007)
+$ chmod -R 755 /path/to/dir  # Recursively set permissions for all files/dirs inside
+$ chmod --reference php java  # Copy permissions from php to java file
+
+
+umask = user file-creation mask
+When you create a new file, Linux assigns default permissions based on the umask value.
+It’s a filter that removes permissions from the default.
+Formula: Default permissions - umask = actual permissions
+By default, files are created with 666 (rw-rw-rw-) and directories with 777 (rwxrwxrwx).
+
+🔹 Checking umask
+$ umask
+0022
+This means:
+Owner: no restrictions (0)
+Group: remove write (2)
+Others: remove write (2)
+
+🔹 Setting umask
+$ umask 0077
+This sets:
+Owner: no restrictions (0)
+Group: remove all (7)
+Others: remove all (7)
+
+Example with umask
+
+👉 Suppose umask = 0022
+
+For a new file (default 666):
+666 - 022 = 644 → -rw-r--r--
+Owner can read/write, group and others can read only.
+For a new directory (default 777):
+777 - 022 = 755 → drwxr-xr-x
+Owner can read/write/execute, group and others can read/execute.
+

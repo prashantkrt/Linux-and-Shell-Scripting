@@ -1,0 +1,17 @@
+The file command in Linux is used to determine the type of a file.
+
+$ file notes.txt
+notes.txt: ASCII text
+
+$ file image.png
+image.png: PNG image data, 800 x 600, 8-bit/color RGB, non-interlaced
+
+$ file script.sh
+script.sh: Bourne-Again shell script, ASCII text executable
+
+You can also use the file command with multiple files at once:
+$ file notes.txt image.png script.sh
+notes.txt: ASCII text
+image.png: PNG image data, 800 x 600, 8-bit/color RGB, non-interlaced
+script.sh: Bourne-Again shell script, ASCII text executable
+
