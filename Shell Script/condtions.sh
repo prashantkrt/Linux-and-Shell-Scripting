@@ -1,4 +1,5 @@
 # Conditions in Bash Scripting
+: << 'COMMENT'
 -eq → equal
 -ne → not equal
 -gt → greater than
@@ -58,8 +59,6 @@ fi
 
 # file tests using arithmetic evaluation is not possible. Use [[ ... ]] for file tests.
 
-
-
 # Arithmetic expansion
 # $(( expression )) or $(())
 # sum=$((num1 + num2))    # ✅ Correct
@@ -73,11 +72,12 @@ Bash automatically treats names inside (( )) as variables.
 
 Outside (( ... )):
 👉 You must use $ to expand a variable (get its value).
+COMMENT
 
-------------------------------------------------
+# ------------------------------------------------
 # Program 1
 # compare two numbers
-------------------------------------------------
+# ------------------------------------------------
 #!/bin/bash
 
 echo "Enter first number: "
@@ -109,8 +109,8 @@ elif [[ $num1 -ne $num2 ]]; then
    fi
 fi
 
-## same abouve using (( ))
-------------------------------------------------
+# same above using (( ))
+# ------------------------------------------------
 if (( num1 == num2 )); then
     echo "$num1 is EQUAL to $num2"
 elif (( num1 != num2 )); then
@@ -128,11 +128,13 @@ elif (( num1 != num2 )); then
         echo "$num1 is LESS or EQUAL to $num2"
     fi
 fi
-------------------------------------------------
+
+
+# ------------------------------------------------
 # Program 2
 # String comparison and logical operators
 # Example: Check if a string is empty or not
-------------------------------------------------
+# ------------------------------------------------
 #!/bin/bash
 
 echo "Enter a string: "
@@ -147,7 +149,7 @@ fi
 if [[ -n $str ]]; then
     echo "String is NOT empty (-n check)"
 fi
-------------------------------------------------
+# ------------------------------------------------
 # Same above using (( ))
 # Check if string is not empty
 if (( ${#str} != 0 )); then
@@ -156,11 +158,14 @@ fi
 if (( ${#str} != 0 )); then
     echo "String is NOT empty (arithmetic check)"
 fi
---------------------------------------------------
+
+
+
+# --------------------------------------------------
 # Program 3
 # String equality and logical operators
 # Example: Check if two strings are equal or not
---------------------------------------------------
+# --------------------------------------------------
 #!/bin/bash
 
 echo "Enter first string: "
@@ -174,11 +179,13 @@ if [[ $str1 != $str2 ]]; then
     echo "Strings are NOT equal (!= check)"
 fi
 
-----------------------------------------------------  
+
+
+# ----------------------------------------------------
 # Program 4
 # Logical AND (&&) and OR (||) operators
 # Example: Using logical AND (&&) and OR (||) operators
-----------------------------------------------------
+# ----------------------------------------------------
 #!/bin/bash
 
 echo "Enter your age: "
@@ -190,10 +197,10 @@ else
     echo "You are not eligible to work."
 fi
 
-------------------------------------------------------
+# ------------------------------------------------------
 # Program 5
 # File Test in Bash
--------------------------------------------------------
+# -------------------------------------------------------
 #!/bin/bash
 
 echo "Enter a file or directory path: "
@@ -203,21 +210,21 @@ if [[ -e $path ]]; then
     echo "$path exists"
 
     if [[ -f $path ]]; then
-        echo "📄 It is a regular FILE"
+        echo "It is a regular FILE"
     fi
 
     if [[ -d $path ]]; then
-        echo "📂 It is a DIRECTORY"
+        echo "It is a DIRECTORY"
     fi
 
     if [[ -r $path ]]; then
-        echo "🔓 It is READABLE"
+        echo "It is READABLE"
     else
         echo "Not readable"
     fi
 
     if [[ -w $path ]]; then
-        echo " It is WRITABLE"
+        echo "It is WRITABLE"
     else
         echo "Not writable"
     fi
@@ -231,11 +238,11 @@ else
     echo "$path does not exist"
 fi
 
--------------------------------------------------------
+# ------------------------------------------------------
 # Program 6
 # Arithmetic conditions using (( ))
 # Example: Check if a number is even or odd
--------------------------------------------------------
+# ------------------------------------------------------
 #!/bin/bash
 
 echo "Enter a number: "
@@ -245,11 +252,13 @@ if (( number % 2 == 0 )); then
 else
     echo "$number is ODD"
 fi
---------------------------------------------------------
+
+
+# -------------------------------------------------------
 # Program 7
 # More arithmetic conditions using (( ))
 # Example: Check if a year is a leap year
---------------------------------------------------------
+# -------------------------------------------------------
 #!/bin/bash
 
 echo "Enter a year: "
@@ -259,11 +268,12 @@ if (( (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0) )); then
 else
     echo "$year is NOT a leap year"
 fi
-----------------------------------------------------------
+
+# ----------------------------------------------------------
 # Program 8
 # More arithmetic conditions using (( ))
 # Example: Check if a number is positive, negative, or zero
-----------------------------------------------------------
+# ----------------------------------------------------------
 #!/bin/bash
 echo "Enter a number: "
 read number
