@@ -23,8 +23,7 @@ Enter/Return → move the cursor to a new line below.
 Backspace → delete left and move cursor left.
 Ctrl-h → same as Backspace.
 Ctrl-w → delete previous word.
-Ctrl-u → delete to the beginning of the line.
-
+Ctrl-u → delete to the beginning of the line. Everything before the cursor on that line is deleted.
 ⚡ But you cannot use h, j, k, l, w, b, etc. (they only work in Normal Mode).
 
 So usually the workflow is:
@@ -74,7 +73,7 @@ Starts when you type : / ?.
 Used for save/quit (:wq, :q!) or search (/word).
 
 
-Open Vim → it starts in Normal mo
+Open Vim → it starts in Normal mode
 Basic cursor movement keys in Normal Mode:
 h → move left
 l → move right
@@ -129,14 +128,21 @@ O   Open new line after cursor                  # Open new line above the curren
 Example:
 :wq    Saves the file and exits Vim
 
-### Normal Mode, when you press keys like d, w, y, p etc., you are giving Vim commands directly.
+## Normal Mode, when you press keys like d, w, y, p etc., you are giving Vim commands directly. ## 
+=> Normal Mode commands <=
 ## 6. Delete Text
-x    Delete character under cursor
-dw   Delete word
-dd   Delete current line
-d$   Delete to end of line
+x          Delete character after cursor
+dw         Delete word after cursor
+db         Delete word before cursor
+dd         Delete current line
+d$(or D)   Delete to end of line
+d0         Delete to beginning of line
+dG         Delete from cursor to the end of the file
+dgg        Delete from cursor to the beginning of the file
+D          Same as d$ (Delete to end of line)
 
-Example:
+
+Some examples:
 You are in Normal Mode (not Insert, not Command-line).
 dw means: delete word starting from cursor.
 So it deletes World.
@@ -145,15 +151,135 @@ Hello World
 Cursor on W
 Command: dw removes World
 
+1. x → Delete character under cursor
+Text in vim: hello world
+If the cursor (|) is on w: : hello |world
+Press x → deletes world
+Result: hello |orld
+
+
+2. dw → Delete word
+Text in Vim: hello world
+If the cursor (|) is on w: hello |world
+Press dw → deletes world
+Result: hello |
+
+3. dd → Delete current line
+Text in Vim:
+hello world
+This is a test
+If the cursor (|) is on h: |hello world
+Press dd → deletes the entire line
+Result:
+This is a test  
+
+Text in Vim:
+line one
+line two
+line three
+
+If the cursor (|) is on:
+line one
+|line two
+line three
+Press dd → deletes the entire line
+Result:
+line one
+line three
+
+if the cursor (|) is on:
+line one
+line | two
+line three
+Press dd → deletes the entire line
+Result:
+line one
+line three
+
+if the cursor (|) is on:
+line one
+line two |
+line three
+Press dd → deletes the entire line
+Result:
+line one
+line three
+
+4. d$ → Delete to end of line
+Text in Vim: hello world
+If the cursor (|) is on w: hello |world
+Press d$ → deletes from cursor to end of line
+Result: hello |
+
+Text in Vim: hello world! How are you?
+If the cursor (|) is on w: hello |world! How are you?
+Press d$ → deletes from cursor to end of line
+Result: hello |
+
+5. d0 → Delete to beginning of line
+Text in Vim: hello world
+If the cursor (|) is on w: hello |world
+Press d0 → deletes from beginning of line to cursor
+Result: |world  
+
+6. dG → Delete from cursor to end of file
+Text in Vim:
+line one
+line two
+line three
+If the cursor (|) is on l of line two:
+line one
+|line two
+line three
+Press dG → deletes from cursor to end of file
+Result:
+line one
+
+7. dgg → Delete from cursor to beginning of file
+Text in Vim:
+line one
+line two
+line three
+If the cursor (|) is on l of line two:
+line one
+|line two
+line three
+Press dgg → deletes from cursor to beginning of file
+Result:
+line two
+line three
+
 ## 7. Undo and Redo
 u        Undo last change
-Ctrl+r   Redo
+Ctrl+r   Redo last undone change
 
 ## 8. Copy, Cut, and Paste
-yy   Yank (copy) a line
-p    Paste after cursor
-P    Paste before cursor
-dd   Cut (delete) a line
+yy   Yank (copy) a line # copies the entire line where the cursor is located.
+yw   Yank (copy) a word # copies the word starting from the cursor position.
+y$   Yank (copy) to end of line # copies from the cursor position to the end of the line.
+yG   Yank (copy) to end of file # copies from the cursor position to the end of the file.
+ygg  Yank (copy) to beginning of file # copies from the cursor position to the beginning of the file.
+p    Paste after cursor # pastes the copied text after the cursor position.
+P    Paste before cursor # pastes the copied text before the cursor position.
+dd   Cut (delete) a line # deletes the entire line where the cursor is located.
+dw   Cut (delete) a word # deletes the word starting from the cursor position.
+d$   Cut (delete) to end of line # deletes from the cursor position to the end of the line.
+dG   Cut (delete) to end of file # deletes from the cursor position to the end of the file.
+dgg  Cut (delete) to beginning of file # deletes from the cursor position to the beginning of the file.
+
+Cut (Delete + Store) in Normal Mode
+dd → cut the current line
+ndd → cut n lines (example: 3dd cuts 3 lines starting from cursor)
+dw → cut from cursor to the end of word (plus space)
+de → cut from cursor to the end of word (excluding trailing space)
+d$ (or D) → cut from cursor to the end of line
+d0 → cut from cursor to the beginning of line
+dG → cut from cursor to the end of file
+dgg → cut from cursor to the beginning of file
+
+Paste in Normal Mode
+p → paste after cursor / below line (for line cuts)
+P → paste before cursor / above line (for line cuts)
 
 ## 9. Search
 /word   Search forward for word
@@ -182,10 +308,67 @@ Ctrl+w w           Switch between windows
 :q!    Quit without saving
 
 # Summary
-
 - Insert Mode: i, a, o
 - Save/Quit: :w, :q, :wq, :q!
 - Navigation: h, j, k, l
 - Delete: dd, dw
 - Undo/Redo: u, Ctrl+r
 - Search/Replace: /word, :%s/old/new/g
+
+
+# Common Vim Commands Summary
+Normal Mode commands → No Enter needed
+Command-line Mode commands (:) → Enter required command. Any command that begins with : requires Enter to execute.
+Basic Commands:
+Shift + :        → enter Command-line mode (Normal Mode command)
+Esc              → return to Normal mode (Any Mode command)
+i                → enter Insert mode (Normal Mode command)
+u                → undo last change (Normal Mode command)
+Ctrl + r         → redo last undone change (Normal Mode command)
+dd               → delete the current line (Normal Mode command)
+yy               → copy (yank) the current line (Normal Mode command)
+p                → paste the copied line below the current line (Normal Mode command)
+P                → paste the copied line above the current line (Normal Mode command)
+/word            → search for word in the file (Normal Mode command) example: /hello Meaning: Search from the cursor downwards (towards the end of the file) for the word.
+?word            → search backward for word in the file (Normal Mode command) example: ?hello Meaning: Search from the cursor upwards (towards the beginning of the file) for the word.
+n                → go to next occurrence of the searched word (Normal Mode command)
+N                → go to previous occurrence of the searched word (Normal Mode command) example: After searching /hello, press n to go to the next occurrence of hello.
+:%s/old/new/g    → replace all occurrences of old with new (Command-line Mode command) example: :%s/old/new/g Meaning: Replace all occurrences of old with new in the entire file.
+:%s/old/new/gc   → replace all occurrences of old with new with confirmation (Command-line Mode command) example: :%s/old/new/gc Meaning: Replace all occurrences of old with new in the entire file, asking for confirmation before each replacement.
+
+:w               → save the file (Command-line Mode command)
+:q               → quit Vim (Command-line Mode command)
+:wq              → save and quit Vim (Command-line Mode command)
+:q!              → quit without saving (Command-line Mode command)
+
+:next            → go to next file when multiple files are opened (Command-line Mode command)
+:prev            → go to previous file when multiple files are opened (Command-line Mode command)
+
+:$               → go to the end of the file (Command-line Mode command)
+G (capital G or press Shift + g)         → go to the end of the file (Normal Mode command)
+:1               → go to the beginning of the file (Command-line Mode command)
+gg               → go to the beginning of the file (Normal Mode command)
+:500             → go to line 500 (Command-line Mode command)
+500G             → go to line 500 (Normal Mode command)
+
+Miscellaneous:
+:split filename  → open file in horizontal split (Command-line Mode command) example: :split filename.txt Meaning: Open filename.txt in a new horizontal split window.
+:vsplit filename → open file in vertical split (Command-line Mode command)  example: :vsplit filename.txt Meaning: Open filename.txt in a new vertical split window.
+Ctrl + w, then w → switch between split windows (Normal Mode command)
+
+Commonsense Tips:
+G → go to end of file
+gg → go to beginning of file
+$ → go to end of line
+0 → go to beginning of line
+b → go back one word
+w → go forward one word
+
+d/D → delete/cut
+y → copy/yank
+p/P → paste
+
+Quick Summary:
+Esc → Go to Normal mode (to run x, dw, dd, etc.)
+i → Insert mode (type text)
+: → Command-line mode (save, quit, search, etc.)
