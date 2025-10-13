@@ -20,7 +20,7 @@ echo "Enter the filename to delete duplicate lines:"
 read filename
 
 if [ -e "$filename" ]; then
-    uniq "$filename" > temp.txt
+    uniq "$filename" > temp.txt. # Remove adjacent duplicate lines and write to a temporary file better to use sort -u
     mv temp.txt "$filename"
     echo "Duplicate lines deleted successfully from '$filename'."
 else
