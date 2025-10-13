@@ -11,4 +11,12 @@ echo "Current date and time: $(date)"
 echo "Files in current directory:"
 ls
 
+echo -n "Enter a number: "
+read number
+
+echo -n "Enter another number: " 
+
+sum=$((number + another_number))
+echo "The sum of $number and $another_number is: $sum"
+
 # End of script

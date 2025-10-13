@@ -6,15 +6,18 @@
 -lt → less than
 -ge → greater or equal
 -le → less or equal
+
 # String comparison
 == → equal
 != → not equal
 -z str → string is empty
 -n str → string is not empty
-# Logical operators
-&& → AND
-|| → OR
 
+# Logical operators
+&& → AND or -a 
+|| → OR or -o
+
+# File test operators
 -e file → exists
 -f file → regular file
 -d dir → directory
@@ -22,6 +25,7 @@
 -w file → writable
 -x file → executable
 
+# Basic if-else syntax
 if [[ condition ]]; then
    # do something
 elif [[ another condition ]]; then
