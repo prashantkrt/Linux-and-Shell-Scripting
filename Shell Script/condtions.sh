@@ -81,6 +81,58 @@ COMMENT
 # ------------------------------------------------
 # Program 1
 # compare two numbers
+# In Bash shell scripting,
+# an if block can have:
+# - one if
+# - zero or more elif
+# - at most one else
+# - and exactly one fi to close the entire block
+# ------------------------------------------------
+#!/bin/bash
+
+echo "Enter first number:"
+read num1
+
+echo "Enter second number:"
+read num2
+
+if (( num1 == num2 )); then
+    echo "$num1 is EQUAL to $num2"
+
+elif (( num1 > num2 )); then
+    echo "$num1 is GREATER than $num2"
+
+else
+    echo "$num1 is LESS than $num2"
+fi
+# ------------------------------------------------
+# | Part     | Meaning             | =~ is the “regex match operator”
+# | -------- | ------------------- |
+# | `^`      | Start of input      |
+# | `-?`     | Optional minus sign | "-?" means “there may be one minus sign, or none.”
+# | `[0-9]+` | One or more digits  |
+# | `$`      | End of input        |
+# ------------------------------------------------
+#!/bin/bash
+
+read -p "Enter first number: " num1. # -p is used to prompt the user with a message
+read -p "Enter second number: " num2
+
+# validate numeric (integers)
+if ! [[ $num1 =~ ^-?[0-9]+$ && $num2 =~ ^-?[0-9]+$ ]]; then
+    echo "Invalid input. Please enter numeric integer values."
+    exit 1
+fi
+
+if (( num1 == num2 )); then
+    echo "$num1 is EQUAL to $num2"
+elif (( num1 > num2 )); then
+    echo "$num1 is GREATER than $num2"
+else
+    echo "$num1 is LESS than $num2"
+fi
+
+
 # ------------------------------------------------
 #!/bin/bash
 
